@@ -25,10 +25,10 @@ export default function MainPage() {
     }
   }
 
-  if (isLoading) {
+  if (isLoggedIn && isLoading) {
     return (
         <>
-            loading...
+          loading...
         </>
     )
   }
