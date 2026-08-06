@@ -1,4 +1,4 @@
-import axiosInstance from "./api/axiosInstance";
+import axiosInstance from "../api/axiosInstance";
 import { useState } from 'react';
 
 export default function FilePage() {
@@ -47,13 +47,13 @@ export default function FilePage() {
     try {
       const response = await axiosInstance.get(
         '/files/download-url',
-        { params: {
+        {
+          params: {
             'key': key
           }
         }
       )
       setDownloadUrl(response.data.fileUrl);
-      console.log(response.data);
     } catch (error) {
       console.log(error.response.data);
     }

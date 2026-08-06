@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router'
 import MainPage from './pages/MainPage'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
+import FilePage from './pages/FilePage'
 import axiosInstance from './api/axiosInstance'
 
 export const LoginContext = createContext();
@@ -41,6 +42,7 @@ function App() {
                 <Route path='/' element={<MainPage />} />
                 <Route path='/register' element={<RegisterPage /> } />
                 <Route path='/login' element={<LoginPage />} />
+                <Route path='/file' element={<FilePage />} />
             </Routes>
         </LoginContext>
     )

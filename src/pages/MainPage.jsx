@@ -25,7 +25,7 @@ export default function MainPage() {
     }
   }
 
-  if (isLoggedIn && isLoading) {
+  if (!isLoggedIn && isLoading) {
     return (
         <>
           loading...
@@ -39,6 +39,7 @@ export default function MainPage() {
         isLoggedIn ?
         <div>
             Welcome!
+            <Link to="/file">File</Link>
             <button onClick={handleLogout}>Log out</button>
         </div> :
         <div>
