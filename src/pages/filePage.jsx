@@ -1,7 +1,7 @@
 import axiosInstance from "./api/axiosInstance";
 import { useState } from 'react';
 
-export default function filePage() {
+export default function FilePage() {
   const [file, setFile] = useState(null);
   const [uploadUrl, setUploadUrl] = useState(null);
   const [key, setKey] = useState('');
