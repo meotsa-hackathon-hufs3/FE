@@ -1,5 +1,7 @@
 import axiosInstance from "../api/axiosInstance";
 import { useState } from 'react';
+import NextButton from "../components/NextButton/NextButton";
+import BackButton from "../components/BackButton/BackButton";
 
 export default function FilePage() {
   const [file, setFile] = useState(null);
@@ -65,6 +67,8 @@ export default function FilePage() {
       <button onClick={handleUpload}>Upload</button>
       <button onClick={handleDownload}>Download</button>
       <a href={downloadUrl}>Click me!</a>
+      <NextButton text={'이미지 생성하기'} />
+      <BackButton />
     </>
   )
 }

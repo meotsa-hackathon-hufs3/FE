@@ -24,9 +24,10 @@ function App() {
             )
             setAccessToken(response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
-            setIsLoading(false);
         } catch (error) {
             console.log(error.response);
+        } finally {
+            setIsLoading(false);
         }
     }
 

@@ -1,6 +1,7 @@
 import axiosInstance from "../api/axiosInstance";
 import { useContext, useState } from 'react';
 import { LoginContext } from "../App";
+import LongButton from "../components/LongButton/LongButton";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -20,6 +21,7 @@ export default function RegisterPage() {
       setAccessToken(response.data.accessToken);
       localStorage.setItem("refreshToken", response.data.refreshToken);
 
+      // 회원가입 후에 어떻게 할지?
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +37,7 @@ export default function RegisterPage() {
         Password
         <input onChange={() => setPassword(event.target.value)} value={password} id="password" type="password" />
       </label>
-      <button onClick={handleRegister}>Submit</button>
+      <LongButton isEmpty={!(username && password) ? true : false} onClick={handleRegister} text={'가입하기'} />
     </>
   )
 }

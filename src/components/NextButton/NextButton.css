@@ -1,0 +1,9 @@
+.nextButton {
+    padding: 0.9rem;
+    gap: 0.7rem;
+    border-radius: 1000px;
+}
+
+.nextButton img {
+    height: 1rem;
+}

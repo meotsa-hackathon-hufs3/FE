@@ -2,6 +2,7 @@ import axiosInstance from "../api/axiosInstance";
 import { useContext, useState } from 'react';
 import { useNavigate } from "react-router";
 import { LoginContext } from "../App";
+import LongButton from "../components/LongButton/LongButton";
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ export default function LoginPage() {
 
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   }
 
@@ -38,7 +39,7 @@ export default function LoginPage() {
         Password
         <input onChange={() => setPassword(event.target.value)} value={password} id="password" type="password" />
       </label>
-      <button onClick={handleLogin}>Submit</button>
+      <LongButton isEmpty={!(username && password) ? true : false} onClick={handleLogin} text={'로그인'} />
     </>
   )
 }
