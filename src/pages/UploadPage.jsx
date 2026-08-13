@@ -1,26 +1,35 @@
 import axiosInstance from "../api/axiosInstance";
-import { useState } from 'react';
-import NextButton from "../components/NextButton/NextButton";
-import BackButton from "../components/BackButton/BackButton";
+import { useContext, useEffect, useState } from 'react';
+import { PageContext } from "../layouts/PageLayout";
+import { LoginContext } from "../App";
 
-export default function FilePage() {
+export default function UploadPage() {
+  // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
+  const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
+  const { setKey } = useContext(LoginContext);
+
   const [file, setFile] = useState(null);
   const [uploadUrl, setUploadUrl] = useState(null);
-  const [key, setKey] = useState('');
   const [downloadUrl, setDownloadUrl] = useState('');
+
+  useEffect(() => {
+    setNextButtonText('이미지 생성하기');
+  })
 
   function handleFileChange(e) {
     setFile(e.target.files[0]);
   }
 
   async function handleUpload() {
+    const type = file.name.split('.')[1]
+
     // Presigned url
     try {
       const response = await axiosInstance.post(
         '/files/presigned-upload',
         {
           "fileName": file.name,
-          "contentType": 'model/stl'
+          "contentType": `image/${type}`
         }
       )
       setUploadUrl(response.data.uploadUrl);
@@ -36,7 +45,7 @@ export default function FilePage() {
         file,
         {
           headers: {
-            'Content-Type': 'model/stl'
+            'Content-Type': `image/${type}`
           }
         }
       )
@@ -45,30 +54,10 @@ export default function FilePage() {
     }
   }
 
-  async function handleDownload() {
-    try {
-      const response = await axiosInstance.get(
-        '/files/download-url',
-        {
-          params: {
-            'key': key
-          }
-        }
-      )
-      setDownloadUrl(response.data.fileUrl);
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  }
-
   return (
     <>
       <input onChange={handleFileChange} type="file" />
       <button onClick={handleUpload}>Upload</button>
-      <button onClick={handleDownload}>Download</button>
-      <a href={downloadUrl}>Click me!</a>
-      <NextButton text={'이미지 생성하기'} />
-      <BackButton />
     </>
   )
 }

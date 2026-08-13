@@ -1,16 +1,17 @@
 import './NextButton.css';
 import icon from '../../assets/next.png'
-import axiosInstance from '../../api/axiosInstance';
+import icon_purple from '../../assets/next_purple.png'
 
-export default function NextButton({isIncomplete, onClick, text}) {
-  // 사용자 입력이 완전한지 아닌지 여부를 isIncomplete이라는 이름으로 넘기면 됨
+export default function NextButton({isActive, onClick, text, white}) {
+  // 활성화 여부를 isActive라는 이름으로 넘기면 됨
   // 클릭 시 발생할 함수는 onClick이라는 이름으로 넘기면 됨
   // 버튼에 보일 텍스트를 text라는 이름으로 넘기면 됨
+  // 흰 배경 버전 원할 시 white라는 이름으로 true를 넘기면 됨
 
   return (
-    <div onClick={onClick} className={'buttonDefault nextButton ' + (isIncomplete ? 'isIncomplete' : '') }>
+    <div onClick={onClick} className={'buttonDefault nextButton ' + (!isActive ? 'isInactive ' : ' ') + (isActive && white ? 'backButton' : '') }>
       {text}
-      <img src={icon} alt="" />
+      <img src={isActive && white ? icon_purple : icon} alt="" />
     </div>
   );
 }
