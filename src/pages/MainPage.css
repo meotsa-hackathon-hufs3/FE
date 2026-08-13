@@ -7,17 +7,12 @@
     position: relative;
 }
 
-.main .loginButton {
+.main .startButton {
+    border-radius: 1000px;
+    padding: 0.9rem 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     position: absolute;
     z-index: 1000;
-}
-
-.main > .loginButton:first-child {
-    top: 2rem;
-    right: 5rem;
-}
-
-.main > .loginButton:nth-child(2) {
     left: 6rem;
     top: 35rem;
     font-size: 1.3rem;

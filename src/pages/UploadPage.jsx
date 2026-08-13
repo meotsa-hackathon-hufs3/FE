@@ -1,12 +1,12 @@
 import axiosInstance from "../api/axiosInstance";
 import { useContext, useEffect, useState } from 'react';
 import { PageContext } from "../layouts/PageLayout";
-import { LoginContext } from "../App";
+import { KeyContext } from "../App";
 
 export default function UploadPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
-  const { setKey } = useContext(LoginContext);
+  const { setKey } = useContext(KeyContext);
 
   const [file, setFile] = useState(null);
   const [uploadUrl, setUploadUrl] = useState(null);

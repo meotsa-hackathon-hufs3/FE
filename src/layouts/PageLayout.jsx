@@ -1,10 +1,10 @@
 import { Outlet } from "react-router";
 import './PageLayout.css';
 import logo from '../assets/logo.png'
-import LoginButton from "../components/LoginButton/LoginButton";
 import BackButton from "../components/BackButton/BackButton";
 import NextButton from "../components/NextButton/NextButton";
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router";
 
 export const PageContext = createContext();
 
@@ -16,12 +16,17 @@ export default function PageLayout() {
     const [nextButtonActive, setNextButtonActive] = useState(false); // 다음 버튼 활성화 여부 설정
     const [nextButtonOnclick, setNextButtonOnclick] = useState(null); // 다음 버튼 누르면 실행할 함수 설정
     const [nextButtonWhite, setNextButtonWhite] = useState(false); // 다음 버튼 배경 색상 설정
+    const navigate = useNavigate();
+
+    function handleLogo() {
+        navigate("/");
+    }
 
     return (
         <PageContext value={{ setDisplayBackButton, setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite }}>
             <div className="pageLayout">
                 <div className="pageLayoutBar">
-                    <img src={logo} alt="" />
+                    <img onClick={handleLogo} src={logo} alt="" />
                 </div>
                 <div className="pageContent">
                     <Outlet />

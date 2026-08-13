@@ -1,9 +1,7 @@
 import axiosInstance from "../api/axiosInstance";
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from "react-router";
-import { LoginContext } from "../App";
 import { Link } from "react-router";
-import LoginButton from "../components/LoginButton/LoginButton";
 import './MainPage.css'
 import main from '../assets/main.png'
 import logo from '../assets/logo.png'
@@ -13,7 +11,6 @@ import step2 from '../assets/step2.png'
 import step3 from '../assets/step3.png'
 
 export default function MainPage() {
-  const { accessToken, setAccessToken, isLoggedIn } = useContext(LoginContext);
   const navigate = useNavigate();
 
   function handleStart() {
@@ -22,8 +19,7 @@ export default function MainPage() {
 
   return (
     <div className="main">
-      <LoginButton />
-      <div onClick={handleStart} className="buttonDefault loginButton">
+      <div onClick={handleStart} className="buttonDefault startButton">
         굿즈 만들기
         <img src={next} alt="" />
       </div>
