@@ -33,7 +33,7 @@
 
 .options > div {
     position: relative;
-    height: 12rem;
+    height: 13rem;
     width: 25rem;
 }
 
@@ -87,6 +87,10 @@
     align-items: center;
 }
 
+#commentedSetting {
+    gap: 0.5rem;
+}
+
 .setting span {
     font-size: 0.7rem;
     color: grey;
@@ -121,10 +125,46 @@
     width: 7rem;
 }
 
-.summary {
+.summarise {
     border: 1px solid rgba(229, 231, 235, 1);
     box-shadow: 2px 4px 10px 0px rgba(0, 0, 0, 0.25);
     background: rgba(248, 249, 250, 1);
     border-radius: 10px;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
+}
+
+.summarise > div:first-child {
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(158, 158, 158, 1);
+    padding-bottom: 0.7rem;
+    font-weight: 500;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(158, 158, 158, 1);
+    font-weight: 500;
+    border-bottom: solid 1px rgba(158, 158, 158, 0.2);
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.summarise > .summary:last-child {
+    border-bottom: none;
+}
+
+.selectedOption {
+    border: 2px solid rgba(102, 99, 206, 1);
+    box-shadow: 0px 0px 10px 0px rgba(102, 99, 206, 0.5);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.71) 67.37%, rgba(78, 78, 78, 0.71) 100%),
+        linear-gradient(0deg, rgba(196, 195, 195, 0.2), rgba(196, 195, 195, 0.2));
+    border-radius: 11px
+}
+
+.setting .selectedButton {
+    color: rgba(102, 99, 206, 1);
+    background: linear-gradient(0deg, rgba(102, 99, 206, 0.05), rgba(102, 99, 206, 0.05));
+    border: 1.5px solid rgba(102, 99, 206, 1);
+    box-shadow: 0px 0px 4px 0px rgba(102, 99, 206, 1);
 }

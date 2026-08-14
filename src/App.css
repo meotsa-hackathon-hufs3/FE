@@ -33,6 +33,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 1000px;
+  padding: 0.9rem 1.6rem;
+  border: none;
+}
+
+.buttonDefault:hover {
+    scale: 0.95;
 }
 
 .isInactive {

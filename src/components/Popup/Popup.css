@@ -1,0 +1,45 @@
+.popupBg {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background-color: white;
+    border-radius: 18px;
+    box-shadow: 2px 4px 20px 0px rgba(0, 0, 0, 0.3);
+    width: 50rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.popup img {
+    width: 2rem;
+}
+
+.popup > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.popup > div > p:last-child {
+    font-size: 0.9rem;
+    color: rgba(158, 158, 158, 1);
+    font-weight: 500;
+}
+
+.popup button {
+    padding: 0.7rem 2.4rem;
+}
