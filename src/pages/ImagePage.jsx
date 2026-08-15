@@ -1,5 +1,6 @@
+import { useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import axiosInstance from "../api/axiosInstance";
-import { useContext, useState } from 'react';
 import Loading from "../components/Loading/Loading";
 import { PageContext } from "../layouts/PageLayout";
 import { KeyContext } from "../App";
@@ -7,30 +8,54 @@ import { KeyContext } from "../App";
 export default function ImagePage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
-  const { key } = useContext(KeyContext);
+  const { key, creationId, setStylizedImageUrl } = useContext(KeyContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const prompt = location.state?.prompt;
 
-  const [uploadUrl, setUploadUrl] = useState(null);
-  const [downloadUrl, setDownloadUrl] = useState('');
+  const [status, setStatus] = useState('loading'); // 'loading' | 'complete' | 'error'
 
-  async function handleDownload() {
-    try {
-      const response = await axiosInstance.get(
-        '/files/download-url',
-        {
-          params: {
-            'key': key
+  useEffect(() => {
+    let cancelled = false;
+
+    async function generateStylizedImage() {
+      try {
+        const response = await axiosInstance.post(
+          `/creations/${creationId}/stylized-images`,
+          {
+            originalImageKey: key,
+            prompt: prompt || undefined,
           }
-        }
-      )
-      setDownloadUrl(response.data.fileUrl); // 이 url로 이미지 띄우기
-    } catch (error) {
-      console.log(error.response.data);
+        );
+        if (cancelled) return;
+        setStylizedImageUrl(response.data.stylizedImageUrl);
+        setStatus('complete');
+      } catch (error) {
+        console.log(error);
+        if (!cancelled) setStatus('error');
+      }
     }
+
+    generateStylizedImage();
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    setNextButtonText('결과 확인');
+    setNextButtonActive(status === 'complete');
+    setNextButtonOnclick(() => () => navigate('/image/result'));
+  }, [status]);
+
+  function handleErrorConfirm() {
+    navigate('/upload');
   }
 
   return (
-    <>
-      <Loading type={'image'} />
-    </>
+    <Loading
+      type={'image'}
+      isComplete={status === 'complete'}
+      error={status === 'error'}
+      onConfirm={handleErrorConfirm}
+    />
   )
 }
