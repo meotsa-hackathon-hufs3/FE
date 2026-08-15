@@ -1,0 +1,31 @@
+.pageLayout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.pageLayoutBar {
+    display: flex;
+    padding: 2rem 6rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #BDBDBD80
+}
+
+.pageContent {
+    padding: 2.5rem 6rem;
+    height: 100%;
+}
+
+.pageBottom {
+    border-top: 2px solid #E0E0E0;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5rem;
+    padding: 1rem 0 2.5rem 0;
+}
+
+.noBackButton {
+    justify-content: flex-end;
+}
