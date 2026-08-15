@@ -22,7 +22,7 @@ function Model({url}) {
 
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
-  const { setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
+  const { setDisplayBackButton, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
   // const { jobId } = useContext(KeyContext);
   const { creationId } = useParams();
  
@@ -32,9 +32,7 @@ export default function ModelPage() {
   const navigate = useNavigate();
 
   function handleResult() {
-    setNextButtonWhite(true);
     setIsLoading(false);
-    // 버튼에 다음 페이지 이동 함수 설정
   }
 
   async function handleModel() {
@@ -59,14 +57,19 @@ export default function ModelPage() {
   }
 
   useEffect(() => {
+    setDisplayBackButton('none');
+    setNextButtonWhite(false);
+
     if (!isLoading) {
       setNextButtonText('다른 사진으로 재생성');
+      setNextButtonWhite(true);
       setNextButtonOnclick(() => handleNewCreation);
     } else {
       setNextButtonText('결과 확인');
     }
 
-    if (!model || !error) {
+    if (!model && !error) {
+      setNextButtonActive(false);
       const interval = setInterval(handleModel, 5000);
       return () => clearInterval(interval);
     }
@@ -82,6 +85,10 @@ export default function ModelPage() {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function handlePricing() {
+    navigate(`/pricing/${creationId}`);
   }
 
   if (!model || isLoading) {
@@ -167,7 +174,7 @@ export default function ModelPage() {
             </div>
           </div>
           <div>
-            <NextButton text={'견적 비교하기'} isActive={true} />
+            <NextButton onClick={handlePricing} text={'견적 비교하기'} isActive={true} />
           </div>
         </div>
       </div>
