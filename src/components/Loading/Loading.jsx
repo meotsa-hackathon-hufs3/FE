@@ -17,7 +17,7 @@ export default function Loading({type, isComplete, error}) {
         </div>
         <div>
           <p>AI가 3D {type == 'image' ? '이미지를' : '모델을'} 생성하고 있어요</p>
-          <p>평균 소요시간 · {type == 'image' ? '2-3' : '3-4'}분</p>
+          <p>평균 소요시간 · {type == 'image' ? '2-3' : '1-3'}분</p>
         </div>
       </>:
       (

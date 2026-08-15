@@ -1,0 +1,82 @@
+.loadingOnScreen {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modelPage {
+    height: 100%;
+}
+
+.modelPage > div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.model {
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(circle at center, #3a3a45 0%, #16161e 100%);
+    border-radius: 22px;
+}
+
+.modelInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0 0 0 ;
+    flex: 1;
+    height: 100%;
+}
+
+.modelInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.modelInfo > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.modelInfo .info {
+    display: flex;
+    justify-content: space-between;
+    color: #9E9E9E;
+    border-bottom: 1px solid #9E9E9E80;
+    padding: 0.5rem 0;
+    align-items: center;
+}
+
+.modelInfoContainer > .modelInfo:nth-child(2) .info {
+    padding: 1rem 0;
+}
+
+.modelInfo .info:last-child {
+    border-bottom: none;
+}
+
+.info > div {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.pass {
+    color: #6663CE;
+    border: solid 1.5px #6663CE;
+    border-radius: 1000px;
+    padding: 0.5rem 1.2rem;
+}
+
+.priceInfo > div {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.modelInfoContainer > div:last-child {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -129,7 +129,7 @@ export default function OptionPage() {
                             <div>선택 요약</div>
                             <div className="summary">
                                 <div>굿즈 종류</div>
-                                <div>{selectedOption ? selectedOption : '-'}</div>
+                                <div>{selectedOption ? (selectedOption == 'FIGURE' ? '피규어' : (selectedOption == 'KEYRING' ? '키링' : '디오라마')) : '-'}</div>
                             </div>
                             <div className="summary">
                                 <div>수량</div>
@@ -141,11 +141,11 @@ export default function OptionPage() {
                             </div>
                             <div className="summary">
                                 <div>소재</div>
-                                <div>{material ? material : '-'}</div>
+                                <div>{material ? (material == 'RESIN' ? '레진' : material) : '-'}</div>
                             </div>
                             <div className="summary">
                                 <div>색상</div>
-                                <div>{colour ? colour : '-'}</div>
+                                <div>{colour ? (colour == "MONO" ? '단색' : '풀컬러') : '-'}</div>
                             </div>
                         </div>
                     </div>

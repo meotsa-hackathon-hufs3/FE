@@ -3,43 +3,153 @@ import { useContext, useEffect, useState } from 'react';
 import NextButton from "../components/NextButton/NextButton";
 import BackButton from "../components/BackButton/BackButton";
 import { PageContext } from "../layouts/PageLayout";
+import { STLLoader } from 'three/addons/loaders/STLLoader.js'
+import { Canvas, useLoader } from '@react-three/fiber'
+import { Bounds, Center, OrbitControls } from '@react-three/drei' 
+import './ModelPage.css'
+import Loading from "../components/Loading/Loading";
+
+function Model({url}) {
+  const geom = useLoader(STLLoader, url);
+  return (
+    <mesh geometry={geom} castShadow receiveShadow>
+      <meshStandardMaterial color="#b0b0b0" metalness={0} roughness={0.85} />
+    </mesh>
+  )
+}
 
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
 
-  useEffect(() => {
-    setNextButtonText('다른 사진으로 재생성');
-    setNextButtonActive(true);
-    setNextButtonWhite(true);
-  }, [])
-  
-  const [file, setFile] = useState(null);
-  const [uploadUrl, setUploadUrl] = useState(null);
-  const [key, setKey] = useState('');
-  const [downloadUrl, setDownloadUrl] = useState('');
+  const [model, setModel] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  // 모델 받아와야 해서 필요함!!! 이걸로 받아와서 띄우기
-  // 키 어디서 받아올지 정해야함
-  async function handleDownload() {
+  function handleResult() {
+    setNextButtonText('다른 사진으로 재생성');
+    setNextButtonWhite(true);
+    setIsLoading(false);
+    // 버튼에 다음 페이지 이동 함수 설정
+  }
+
+  async function handleModel() {
     try {
       const response = await axiosInstance.get(
-        '/files/download-url',
+        '/creations/1/models/1',
         {
-          params: {
-            'key': key
-          }
         }
       )
-      setDownloadUrl(response.data.fileUrl);
+
+      if (response.data.status == "COMPLETED") {
+        setModel(response.data);
+        setNextButtonActive(true);
+        setNextButtonOnclick(() => (handleResult));
+      } else if (response.data.status == "ERROR") {
+        setError(true);
+        // 에러창에서 돌아갈 페이지 설정해놓기
+      }
     } catch (error) {
       console.log(error.response.data);
     }
   }
 
+  useEffect(() => {
+    setNextButtonText('결과 확인');
+
+    if (!model || !error) {
+      const interval = setInterval(handleModel, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [model, error])
+
+  if (!model || isLoading) {
+    return (
+      <div className="loadingOnScreen">
+        <Loading type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} />
+      </div>
+    )
+  }
+
   return (
-    <>
-      <button onClick={handleDownload}>Download</button>
-    </>
+    <div className="container modelPage">
+      <div>
+        <h1>모델을 확인해 보세요</h1>
+        <p>드래그로 회전하고, 확대/축소로 세부를 확인할 수 있어요</p>
+      </div>
+      <div>
+        <div className="model">
+          <Canvas shadows gl={{ alpha: true }} camera={{ position: [0, -30, 0], fov: 40 }}>
+            <ambientLight intensity={0.6} />
+            <directionalLight 
+              position={[-5, -8, 5]} 
+              intensity={1.8} 
+              castShadow
+              shadow-mapSize={[1024, 1024]}
+            />
+            <directionalLight 
+              position={[6, -4, 3]} 
+              intensity={0.7} 
+            />
+            <directionalLight 
+              position={[0, -4, 8]} 
+              intensity={0.4} 
+            />
+            <Bounds fit clip observe margin={1.5}>
+              <Center>
+                {
+                  model &&
+                  <Model url={model.modelUrl} />
+                }
+              </Center>
+            </Bounds>
+            <OrbitControls makeDefault enablePan={false} />
+          </Canvas>
+        </div>
+        <div className="modelInfoContainer">
+          <div className="modelInfo">
+            <div>생성 품질</div>
+            <div>
+                <div className="info">
+                  <div>구조 검사</div>
+                  <div className="pass">{model ? (model.widthCheck ? '통과' : '주의') : '-'}</div>
+                </div>
+                <div className="info">
+                  <div>두께 검사</div>
+                  <div className="pass">{model ? (model.widthCheck ? '통과' : '주의') : '-'}</div>
+                </div>
+            </div>
+          </div>
+          <div className="modelInfo">
+            <div>옵션 요약</div>
+            <div>
+                <div className="info">
+                  <div>수량</div>
+                  <div>{model ? model.amount + '개' : '-'}</div>
+                </div>
+                <div className="info">
+                  <div>크기</div>
+                  <div>{model ? model.size / 10 + 'cm' : '-'}</div>
+                </div>
+                <div className="info">
+                  <div>소재</div>
+                  <div>{model ? (model.material == 'PLA' ? 'PLA' : '레진') : '-'}</div>
+                </div>
+                <div className="info">
+                  <div>색상</div>
+                  <div>{model ? (model.color == 'MONO' ? '단색' : '풀컬러') : '-'}</div>
+                </div>
+                <div className="info priceInfo">
+                  <div>예상 금액</div>
+                  <div>{model ? model.expectedFee.toLocaleString() + '원' : '-'}</div>
+                </div>
+            </div>
+          </div>
+          <div>
+            <NextButton text={'견적 비교하기'} isActive={true} />
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
