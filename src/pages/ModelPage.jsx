@@ -10,7 +10,6 @@ import { Canvas, useLoader } from '@react-three/fiber'
 import { Bounds, Center, OrbitControls } from '@react-three/drei' 
 import './ModelPage.css'
 import Loading from "../components/Loading/Loading";
-import axios from "axios";
 
 function Model({url}) {
   const geom = useLoader(STLLoader, url);
@@ -134,11 +133,11 @@ export default function ModelPage() {
             <div>
                 <div className="info">
                   <div>구조 검사</div>
-                  <div className="pass">{model ? (model.widthCheck ? '통과' : '주의') : '-'}</div>
+                  <div className={model?.widthCheck ? 'pass' : 'pass fail'}>{model ? (model.widthCheck ? '통과' : '주의') : '-'}</div>
                 </div>
                 <div className="info">
                   <div>두께 검사</div>
-                  <div className="pass">{model ? (model.widthCheck ? '통과' : '주의') : '-'}</div>
+                  <div className={model?.widthCheck ? 'pass' : 'pass fail'}>{model ? (model.widthCheck ? '통과' : '주의') : '-'}</div>
                 </div>
             </div>
           </div>
