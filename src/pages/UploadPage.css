@@ -1,0 +1,125 @@
+.uploadPage {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.uploadHeader p:first-child {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.uploadHeader p:last-child {
+    color: #9E9E9E;
+    font-weight: 500;
+    margin-top: 0.4rem;
+}
+
+.uploadBox {
+    background-color: #FBFAFF;
+    border-radius: 22px;
+    box-shadow: 1px 4px 15px 0px #00000026;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 3rem 1.5rem;
+    cursor: pointer;
+    min-height: 220px;
+}
+
+.uploadBox.dragOver {
+    background-color: #F1F0FC;
+}
+
+.uploadBox.error {
+    padding: 1.5rem;
+}
+
+.uploadBox.success,
+.uploadBox.error {
+    cursor: default;
+}
+
+.uploadBox p {
+    font-weight: 600;
+    text-align: center;
+}
+
+.uploadBox p.small {
+    color: #9E9E9E;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.uploadBox .fileName {
+    color: #6663CE;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.uploadIcon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-bottom: 0.4rem;
+}
+
+.uploadActionButton {
+    padding: 0.7rem 1.5rem;
+    border-radius: 1000px;
+    margin-top: 0.4rem;
+}
+
+.uploadErrorCard {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 1px 4px 15px 0px #00000026;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.75rem 2rem;
+    width: 100%;
+    max-width: 620px;
+    cursor: default;
+}
+
+.uploadTip {
+    color: #9E9E9E;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.uploadPrompt {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.uploadPrompt label {
+    align-self: flex-start;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.uploadPrompt textarea {
+    border: 1.5px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 1rem;
+    min-height: 100px;
+    resize: vertical;
+    font-weight: 500;
+    color: #222222;
+}
+
+.uploadPrompt textarea::placeholder {
+    color: #9E9E9E;
+}
+
+.uploadPrompt textarea:focus {
+    outline: none;
+    border-color: #6663CE;
+}
