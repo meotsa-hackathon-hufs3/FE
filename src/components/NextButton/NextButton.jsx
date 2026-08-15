@@ -9,9 +9,9 @@ export default function NextButton({ isActive, onClick, text, white }) {
     // 흰 배경 버전 원할 시 white라는 이름으로 true를 넘기면 됨
 
   return (
-    <div onClick={isActive ? onClick : null} className={'buttonDefault nextButton ' + (!isActive ? 'isInactive ' : ' ') + (isActive && white ? 'backButton' : '') }>
+    <button onClick={isActive ? onClick : null} className={'buttonDefault nextButton ' + (!isActive ? 'isInactive ' : ' ') + (isActive && white ? 'backButton' : '') }>
       {text}
       <img src={isActive && white ? icon_purple : icon} alt="" />
-    </div>
+    </button>
   );
 }

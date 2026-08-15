@@ -11,8 +11,8 @@ export default function BackButton({display, url}) {
   }
 
   return (
-    <div style={{display: display}} onClick={handleUrl} className='buttonDefault backButton'>
+    <button style={{display: display}} onClick={handleUrl} className='buttonDefault backButton'>
       이전
-    </div>
+    </button>
   );
 }

@@ -13,8 +13,16 @@ import step3 from '../assets/step3.png'
 export default function MainPage() {
   const navigate = useNavigate();
 
-  function handleStart() {
-    navigate('/upload');
+  async function handleStart() {
+    try {
+      const response = await axiosInstance.post(
+        '/creations'
+      )
+    
+      navigate(`/upload/${response.data.creationId}`);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
