@@ -14,9 +14,10 @@ export const KeyContext = createContext();
 
 function App() {
     const [key, setKey] = useState(null);
+    const [creationId, setCreationId] = useState(null);
 
     return (
-        <KeyContext value={{ key, setKey }}>
+        <KeyContext value={{ key, setKey, creationId, setCreationId }}>
             <Routes>
                 <Route path='/' element={<MainPage />} />
                 <Route element={<PageLayout />}>

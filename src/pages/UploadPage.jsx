@@ -13,7 +13,7 @@ const ACCEPTED_TYPES = ['image/jpeg', 'image/png'];
 export default function UploadPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
     const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
-    const { setKey } = useContext(KeyContext);
+    const { setKey, creationId, setCreationId } = useContext(KeyContext);
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
 
@@ -82,9 +82,17 @@ export default function UploadPage() {
         const type = selectedFile.name.split('.').pop();
 
         try {
+            let currentCreationId = creationId;
+            if (!currentCreationId) {
+                const creationResponse = await axiosInstance.post('/creations');
+                currentCreationId = creationResponse.data.creationId;
+                setCreationId(currentCreationId);
+            }
+
             // Presigned url
             const response = await axiosInstance.post('/files/presigned-upload', {
-                fileName: selectedFile.name,
+                creationId: currentCreationId,
+                purpose: 'ORIGINAL_IMAGE',
                 contentType: `image/${type}`,
             });
             const uploadUrl = response.data.uploadUrl;
