@@ -16,7 +16,7 @@
     padding: 3rem 1.5rem;
     cursor: pointer;
     min-height: 220px;
-    height: 15rem;
+    height: 18rem;
 }
 
 .uploadBox.dragOver {
@@ -95,8 +95,7 @@
     border-radius: 10px;
     background: #F8F8F8;
     padding: 1rem;
-    min-height: 100px;
-    resize: vertical;
+    height: 8rem;
     font-weight: 500;
     color: #222222;
     resize: none;

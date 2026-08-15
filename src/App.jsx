@@ -14,14 +14,15 @@ export const KeyContext = createContext();
 
 function App() {
     const [key, setKey] = useState(null);
+    const [jobId, setJobId] = useState(null);
 
     return (
-        <KeyContext value={{ key, setKey }}>
+        <KeyContext value={{ key, setKey, jobId, setJobId }}>
             <Routes>
                 <Route path='/' element={<MainPage />} />
                 <Route element={<PageLayout />}>
                     <Route path='/upload/:creationId' element={<UploadPage />} />
-                    <Route path='/image' element={<ImagePage />} />
+                    <Route path='/image/:creationId' element={<ImagePage />} />
                     <Route path='/option/:creationId' element={<OptionPage />} />
                     <Route path='/model/:creationId' element={<ModelPage />} />
                     <Route path='/pricing/:creationId' element={<PricingPage />} />

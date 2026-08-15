@@ -1,15 +1,20 @@
 import { useContext, useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router"
+import { KeyContext } from "../App"
 import { PageContext } from "../layouts/PageLayout"
 import './OptionPage.css'
 import option1 from '../assets/option1.png'
 import option2 from '../assets/option2.png'
 import option3 from '../assets/option3.png'
 import Popup from "../components/Popup/Popup"
+import axiosInstance from "../api/axiosInstance"
 
 export default function OptionPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
+    const { setJobId } = useContext(KeyContext);
     const { setDisplayBackButton, setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
 
+    const { creationId } = useParams();
     const [selectedOption, setSelectedOption] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [size, setSize] = useState(5);
@@ -17,10 +22,12 @@ export default function OptionPage() {
     const [colour, setColour] = useState(null);
     const isValid = selectedOption && quantity && size && material && colour;
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (isValid) {
             setNextButtonActive(true);
+            setNextButtonOnclick(() => handleModelCreation);
         }
         
         setDisplayBackButton(true);
@@ -58,6 +65,26 @@ export default function OptionPage() {
             return;
         }
         setColour(c);
+    }
+
+    async function handleModelCreation() {
+        try {
+            const response = await axiosInstance.post(
+                `/creations/${creationId}/models`,
+                {
+                    "productType": selectedOption,
+                    "size": size * 10,
+                    "amount": quantity,
+                    "material": material,
+                    "color": colour
+                }
+            )
+
+            setJobId(response.data.jobId);
+            navigate(`/model/${creationId}`);
+        } catch (error) {
+            console.log(error);
+        }
     }
     
     return (

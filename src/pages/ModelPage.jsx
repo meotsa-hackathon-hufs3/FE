@@ -1,13 +1,16 @@
 import axiosInstance from "../api/axiosInstance";
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from "react-router";
 import NextButton from "../components/NextButton/NextButton";
 import BackButton from "../components/BackButton/BackButton";
+import { KeyContext } from "../App";
 import { PageContext } from "../layouts/PageLayout";
 import { STLLoader } from 'three/addons/loaders/STLLoader.js'
 import { Canvas, useLoader } from '@react-three/fiber'
 import { Bounds, Center, OrbitControls } from '@react-three/drei' 
 import './ModelPage.css'
 import Loading from "../components/Loading/Loading";
+import axios from "axios";
 
 function Model({url}) {
   const geom = useLoader(STLLoader, url);
@@ -21,13 +24,15 @@ function Model({url}) {
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
-
+  // const { jobId } = useContext(KeyContext);
+  const { creationId } = useParams();
+ 
   const [model, setModel] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   function handleResult() {
-    setNextButtonText('다른 사진으로 재생성');
     setNextButtonWhite(true);
     setIsLoading(false);
     // 버튼에 다음 페이지 이동 함수 설정
@@ -35,10 +40,10 @@ export default function ModelPage() {
 
   async function handleModel() {
     try {
+      // 테스트용이니까 나중에 지우고 jobId 살려놓기!!
+      const jobId = 1;
       const response = await axiosInstance.get(
-        '/creations/1/models/1',
-        {
-        }
+        `/creations/${creationId}/models/${jobId}`
       )
 
       if (response.data.status == "COMPLETED") {
@@ -55,13 +60,30 @@ export default function ModelPage() {
   }
 
   useEffect(() => {
-    setNextButtonText('결과 확인');
+    if (!isLoading) {
+      setNextButtonText('다른 사진으로 재생성');
+      setNextButtonOnclick(() => handleNewCreation);
+    } else {
+      setNextButtonText('결과 확인');
+    }
 
     if (!model || !error) {
       const interval = setInterval(handleModel, 5000);
       return () => clearInterval(interval);
     }
-  }, [model, error])
+  }, [model, error, isLoading])
+
+  async function handleNewCreation() {
+    try {
+      const response = await axiosInstance.post(
+        '/creations'
+      )
+    
+      navigate(`/upload/${response.data.creationId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   if (!model || isLoading) {
     return (
