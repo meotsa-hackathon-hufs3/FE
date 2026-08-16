@@ -3,19 +3,35 @@ import { useParams } from "react-router";
 import { PageContext } from "../layouts/PageLayout";
 import './PricingPage.css'
 import Popup from "../components/Popup/Popup";
+import axiosInstance from "../api/axiosInstance";
 
 export default function PricingPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
     const { setDisplayBackButton, setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
     const { creationId } = useParams();
-    const [ selected, setSelected ] = useState(null);
+    const [ selected, setSelected ] = useState('');
     const [ end, setEnd ] = useState(false);
+    const [ pricings, setPricings ] = useState([]);
 
     function handleEnd() {
         setEnd(true);
     }
+
+    async function handlePricing() {
+        try {
+            const response = await axiosInstance.get(
+                `/creations/${creationId}/estimates`
+            )
+            setPricings(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
     useEffect(() => {
+        handlePricing();
+
         setDisplayBackButton(true);
         setNextButtonWhite(false);
         setNextButtonActive(false);
@@ -50,19 +66,25 @@ export default function PricingPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th className="company" scope="row">
-                                <div>프린팅랩</div>
-                                <div>서울 ·  자체 출력소</div>
-                            </th>
-                            <td>PLA</td>
-                            <td>3-4일</td>
-                            <td>1개</td>
-                            <td>28,000원</td>
-                            <td>3,000원</td>
-                            <td>31,000원</td>
-                            <td><button onClick={() => setSelected(true)} className={"buttonDefault " + (selected ? '' : 'backButton')}>{ selected ? '선택됨' : '선택'}</button></td>
-                        </tr>
+                        {
+                            pricings.map((pricing) => {
+                                return (
+                                    <tr key={pricings.indexOf(pricing)}>
+                                        <th className="company" scope="row">
+                                            <div>{pricing.name}</div>
+                                            <div>{pricing.tag}</div>
+                                        </th>
+                                        <td>{pricing.material} · {pricing.process}</td>
+                                        <td>{pricing.expectedTime}</td>
+                                        <td>{pricing.minQuantity}개</td>
+                                        <td>{pricing.printingCost.toLocaleString()}원</td>
+                                        <td>{pricing.shippingCost.toLocaleString()}원</td>
+                                        <td>{pricing.totalCost.toLocaleString()}원</td>
+                                        <td><button onClick={() => setSelected(pricing.printShopId)} className={"buttonDefault " + (selected == pricing.printShopId ? '' : 'backButton')}>{ selected == pricing.printShopId ? '선택됨' : '선택'}</button></td>
+                                    </tr>
+                                )
+                        })
+                        }
                     </tbody>
                 </table>
                 <div className="priceNote">
