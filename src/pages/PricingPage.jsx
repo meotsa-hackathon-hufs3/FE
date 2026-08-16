@@ -4,6 +4,7 @@ import { PageContext } from "../layouts/PageLayout";
 import './PricingPage.css'
 import Popup from "../components/Popup/Popup";
 import axiosInstance from "../api/axiosInstance";
+import { div } from "three/tsl";
 
 export default function PricingPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
@@ -87,6 +88,23 @@ export default function PricingPage() {
                         }
                     </tbody>
                 </table>
+                <div className="pricingCards">
+                    {
+                        pricings.map((pricing) => {
+                            return (
+                                <div className={"pricingCard " + (selected == pricing.printShopId ? "selectedCard" : '')} onClick={() => setSelected(pricing.printShopId)}>
+                                    <div>{pricing.name} <span>{pricing.tag}</span></div>
+                                    <div><span>소재 / 공정</span> {pricing.material} · {pricing.process}</div>
+                                    <div><span>예상 기간</span> {pricing.expectedTime}</div>
+                                    <div><span>최소 수량</span> {pricing.minQuantity}개</div>
+                                    <div><span>제작 비용</span> {pricing.printingCost.toLocaleString()}원</div>
+                                    <div><span>배송비</span> {pricing.shippingCost.toLocaleString()}원</div>
+                                    <div><span>예상 합계</span> {pricing.totalCost.toLocaleString()}원</div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
                 <div className="priceNote">
                     <div>
                         선택한 업체 기준으로 결제 화면에서 배송지·결제수단을 입력합니다.
