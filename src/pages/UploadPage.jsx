@@ -108,6 +108,7 @@ export default function UploadPage() {
 
     return (
         <div className="container uploadPage">
+            <title>PETFORM: 파일 업로드</title>
             <div>
                 <h1>사진을 업로드해주세요</h1>
                 <p>마음에 들지 않는 부분은 프롬프트를 수정해 다시 생성할 수 있어요.</p>

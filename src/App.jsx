@@ -20,6 +20,7 @@ function App() {
 
     return (
         <KeyContext value={{ key, setKey, jobId, setJobId, stylizedImageUrl, setStylizedImageUrl }}>
+            <title>PETFORM</title>
             <Routes>
                 <Route path='/' element={<MainPage />} />
                 <Route element={<PageLayout />}>

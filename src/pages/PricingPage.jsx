@@ -24,7 +24,6 @@ export default function PricingPage() {
                 `/creations/${creationId}/estimates`
             )
             setPricings(response.data);
-            console.log(response.data);
         } catch (error) {
             console.log(error);
         }
@@ -47,6 +46,7 @@ export default function PricingPage() {
 
     return (
         <>
+            <title>PETFORM: 견적 비교</title>
             <Popup setError={setEnd} visibility={end} mainText={'감사합니다'} type={'smile'} />
             <div className="container pricingPage">
                 <div>
@@ -92,7 +92,7 @@ export default function PricingPage() {
                     {
                         pricings.map((pricing) => {
                             return (
-                                <div className={"pricingCard " + (selected == pricing.printShopId ? "selectedCard" : '')} onClick={() => setSelected(pricing.printShopId)}>
+                                <div key={pricings.indexOf(pricing)} className={"pricingCard " + (selected == pricing.printShopId ? "selectedCard" : '')} onClick={() => setSelected(pricing.printShopId)}>
                                     <div>{pricing.name} <span>{pricing.tag}</span></div>
                                     <div><span>소재 / 공정</span> {pricing.material} · {pricing.process}</div>
                                     <div><span>예상 기간</span> {pricing.expectedTime}</div>

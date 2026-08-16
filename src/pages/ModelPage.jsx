@@ -97,6 +97,7 @@ export default function ModelPage() {
   if (!model || isLoading) {
     return (
       <div className="loadingOnScreen">
+        <title>PETFORM: 모델 오류</title>
         <Loading type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} onConfirm={error ? handleError : null} />
       </div>
     )
@@ -104,6 +105,7 @@ export default function ModelPage() {
 
   return (
     <div className="container modelPage">
+      <title>PETFORM: 모델 확인</title>
       <div>
         <h1>모델을 확인해 보세요</h1>
         <p>드래그로 회전하고, 확대/축소로 세부를 확인할 수 있어요</p>

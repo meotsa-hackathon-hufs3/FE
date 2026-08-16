@@ -35,6 +35,7 @@ export default function ImageResultPage() {
 
   return (
     <div className="container imageResultPage">
+      <title>PETFORM: 이미지 생성 완료</title>
       <div>
         <h1>{regenerated ? '3D 이미지 재생성 완료' : '3D 이미지 생성 완료'}</h1>
         <p>마음에 들지 않는 부분은 프롬프트를 수정해 다시 생성할 수 있어요.</p>

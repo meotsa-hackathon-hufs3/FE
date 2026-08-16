@@ -89,6 +89,7 @@ export default function OptionPage() {
     
     return (
         <>
+            <title>PETFORM: 옵션 선택</title>
             <Popup setError={setError} visibility={error} mainText={'구현 예정인 기능입니다'} subText={'해당 기능은 추후 업데이트될 예정입니다.'} type={'warning'} />
             <div className="container optionPage">
                 <div>

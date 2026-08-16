@@ -53,6 +53,7 @@ export default function ImagePage() {
 
     return (
         <div className='loadingOnScreen'>
+            <title>PETFORM: 이미지 생성 중</title>
             <Loading
                 type={'image'}
                 isComplete={status === 'complete'}
