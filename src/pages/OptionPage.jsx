@@ -30,6 +30,7 @@ export default function OptionPage() {
             setNextButtonOnclick(() => handleModelCreation);
         }
         
+        setBackPage(`/image/${creationId}/result`);
         setDisplayBackButton(true);
         setNextButtonText('AI 모델 생성 요청하기');
     }, [isValid])
@@ -47,7 +48,6 @@ export default function OptionPage() {
     }
 
     function handleSize(e) {
-        // 백에 보낼 때 단위 변환!
         setSize(e.target.value);
     }
     

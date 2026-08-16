@@ -24,7 +24,7 @@ function Model({url}) {
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setDisplayBackButton, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
-  // const { jobId } = useContext(KeyContext);
+  const { jobId } = useContext(KeyContext);
   const { creationId } = useParams();
  
   const [model, setModel] = useState('');
@@ -39,7 +39,6 @@ export default function ModelPage() {
   async function handleModel() {
     try {
       // 테스트용이니까 나중에 지우고 jobId 살려놓기!!
-      const jobId = 1;
       const response = await axiosInstance.get(
         `/creations/${creationId}/models/${jobId}`
       )
@@ -50,7 +49,6 @@ export default function ModelPage() {
         setNextButtonOnclick(() => (handleResult));
       } else if (response.data.status == "ERROR") {
         setError(true);
-        // 에러창에서 돌아갈 페이지 설정해놓기
       }
     } catch (error) {
       console.log(error.response.data);
@@ -92,10 +90,14 @@ export default function ModelPage() {
     navigate(`/pricing/${creationId}`);
   }
 
+  function handleError() {
+    navigate(`/image/${creationId}/result`)
+  }
+
   if (!model || isLoading) {
     return (
       <div className="loadingOnScreen">
-        <Loading type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} />
+        <Loading type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} onConfirm={error ? handleError : null} />
       </div>
     )
   }
