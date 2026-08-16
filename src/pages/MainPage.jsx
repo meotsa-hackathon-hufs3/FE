@@ -9,8 +9,7 @@ import next from '../assets/next.png'
 import step1 from '../assets/step1.png'
 import step2 from '../assets/step2.png'
 import step3 from '../assets/step3.png'
-import logo_mobile from '../assets/logo_mobile.png'
-import dog from '../assets/dog.png'
+import main_mobile from '../assets/main_mobile.png'
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -36,12 +35,16 @@ export default function MainPage() {
 
       <img className="mainImage" src={main} alt="" />
       <div className="mobileMain">
-        <img className="mobileLogo" src={logo_mobile} alt="" />
+        <img src={main_mobile} alt="" />
         <div className="mobileIntro">
-          AI가 사진 한 장 속 반려동물의 모습을<br />그대로 담아 3D로 되살려,<br />
-            오래도록 곁에 두고 볼 수 있는<br />나만의 굿즈로 만들어드려요.
+          <div>
+            “반려동물의 모습을 나만의 굿즈로”
+          </div>
+          <div>
+            AI가 사진 한 장 속 반려동물의 모습을 그대로 담아 3D로 되살려,<br />
+            오래도록 곁에 두고 볼 수 있는 나만의 굿즈로 만들어드려요.
+          </div>
         </div>
-        <img className="dogImage" src={dog} alt="" />
         <div onClick={handleStart} className="buttonDefault startButton">
           굿즈 만들기
           <img src={next} alt="" />
