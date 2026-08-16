@@ -11,14 +11,13 @@ import errorIcon from '../assets/error.png';
 const ACCEPTED_TYPES = ['image/jpeg', 'image/png'];
 
 export default function UploadPage() {
-    // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
     const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
     const { setKey, creationId, setCreationId } = useContext(KeyContext);
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
 
     const [file, setFile] = useState(null);
-    const [uploadStatus, setUploadStatus] = useState('idle'); // 'idle' | 'success' | 'error'
+    const [uploadStatus, setUploadStatus] = useState('idle');
     const [isDragOver, setIsDragOver] = useState(false);
     const [prompt, setPrompt] = useState('');
 
@@ -89,7 +88,6 @@ export default function UploadPage() {
                 setCreationId(currentCreationId);
             }
 
-            // Presigned url
             const response = await axiosInstance.post('/files/presigned-upload', {
                 creationId: currentCreationId,
                 purpose: 'ORIGINAL_IMAGE',
@@ -98,7 +96,6 @@ export default function UploadPage() {
             const uploadUrl = response.data.uploadUrl;
             setKey(response.data.key);
 
-            // Upload
             await axiosInstance.put(uploadUrl, selectedFile, {
                 headers: {
                     'Content-Type': `image/${type}`,

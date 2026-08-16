@@ -1,10 +1,10 @@
-import { Outlet } from "react-router";
+import { Outlet } from 'react-router';
 import './PageLayout.css';
-import logo from '../assets/logo.png'
-import BackButton from "../components/BackButton/BackButton";
-import NextButton from "../components/NextButton/NextButton";
-import { createContext, useState } from "react";
-import { useNavigate } from "react-router";
+import logo from '../assets/logo.png';
+import BackButton from '../components/BackButton/BackButton';
+import NextButton from '../components/NextButton/NextButton';
+import { createContext, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export const PageContext = createContext();
 
@@ -19,11 +19,20 @@ export default function PageLayout() {
     const navigate = useNavigate();
 
     function handleLogo() {
-        navigate("/");
+        navigate('/');
     }
 
     return (
-        <PageContext value={{ setDisplayBackButton, setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite }}>
+        <PageContext
+            value={{
+                setDisplayBackButton,
+                setBackPage,
+                setNextButtonText,
+                setNextButtonActive,
+                setNextButtonOnclick,
+                setNextButtonWhite,
+            }}
+        >
             <div className="pageLayout">
                 <div className="pageLayoutBar">
                     <img onClick={handleLogo} src={logo} alt="" />
@@ -31,11 +40,16 @@ export default function PageLayout() {
                 <div className="pageContent">
                     <Outlet />
                 </div>
-                <div className={"pageBottom " + (displayBackButton == 'none' ? 'noBackButton' : '')}>
+                <div className={'pageBottom ' + (displayBackButton == 'none' ? 'noBackButton' : '')}>
                     <BackButton display={displayBackButton} url={backPage} />
-                    <NextButton isActive={nextButtonActive} onClick={nextButtonOnclick} text={nextButtonText} white={nextButtonWhite} />
+                    <NextButton
+                        isActive={nextButtonActive}
+                        onClick={nextButtonOnclick}
+                        text={nextButtonText}
+                        white={nextButtonWhite}
+                    />
                 </div>
             </div>
         </PageContext>
-    )
+    );
 }

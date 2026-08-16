@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router'
 import MainPage from './pages/MainPage'
 import ModelPage from './pages/ModelPage'
 import ImagePage from './pages/ImagePage'
+import ImageResultPage from './pages/ImageResultPage'
 import axiosInstance from './api/axiosInstance'
 import PageLayout from './layouts/PageLayout'
 import OptionPage from './pages/OptionPage'
@@ -24,6 +25,7 @@ function App() {
                 <Route element={<PageLayout />}>
                     <Route path='/upload' element={<UploadPage />} />
                     <Route path='/image' element={<ImagePage />} />
+                    <Route path='/image/result' element={<ImageResultPage />} />
                     <Route path='/option' element={<OptionPage />} />
                     <Route path='/model' element={<ModelPage />} />
                     <Route path='/pricing' element={<PricingPage />} />
