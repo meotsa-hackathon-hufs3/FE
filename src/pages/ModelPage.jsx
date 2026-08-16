@@ -7,6 +7,7 @@ import { KeyContext } from "../App";
 import { PageContext } from "../layouts/PageLayout";
 import { STLLoader } from 'three/addons/loaders/STLLoader.js'
 import { Canvas, useLoader } from '@react-three/fiber'
+import { PCFShadowMap } from 'three';
 import { Bounds, Center, OrbitControls } from '@react-three/drei' 
 import './ModelPage.css'
 import Loading from "../components/Loading/Loading";
@@ -67,7 +68,7 @@ export default function ModelPage() {
       setNextButtonText('결과 확인');
     }
 
-    if (!model || !error) {
+    if (!model && !error) {
       const interval = setInterval(handleModel, 5000);
       return () => clearInterval(interval);
     }
@@ -101,7 +102,7 @@ export default function ModelPage() {
       </div>
       <div>
         <div className="model">
-          <Canvas shadows gl={{ alpha: true }} camera={{ position: [0, -30, 0], fov: 40 }}>
+          <Canvas shadows={{ type: PCFShadowMap }} gl={{ alpha: true }} camera={{ position: [0, -30, 0], fov: 40 }}>
             <ambientLight intensity={0.6} />
             <directionalLight 
               position={[-5, -8, 5]} 

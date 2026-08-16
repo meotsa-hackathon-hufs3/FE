@@ -29,3 +29,25 @@
 .noBackButton {
     justify-content: flex-end;
 }
+
+@media (max-width: 430px) {
+    .pageLayout {
+        height: 100%;
+    }
+    
+    .pageLayout > div {
+        padding: 1.8rem;
+    }
+
+    .pageContent {
+        flex: 1;
+    }
+
+    .pageContent * {
+        word-break: keep-all;
+    }
+
+    .pageBottom {
+        margin: 0;
+    }
+}

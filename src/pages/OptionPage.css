@@ -49,7 +49,7 @@
     color: white;
     bottom: 1.2rem;
     left: 1.2rem;
-    z-index: 1000;
+    z-index: 1;
     font-weight: 500;
 }
 
@@ -104,6 +104,7 @@
     border: 1px solid rgba(158, 158, 158, 1);
     color: rgba(158, 158, 158, 1);
     appearance: none;
+    background-color: white;
     background-image: url('../assets/select.png');
     background-repeat: no-repeat;
     background-position: right 1rem center;
@@ -167,4 +168,23 @@
     background: linear-gradient(0deg, rgba(102, 99, 206, 0.05), rgba(102, 99, 206, 0.05));
     border: 1.5px solid rgba(102, 99, 206, 1);
     box-shadow: 0px 0px 4px 0px rgba(102, 99, 206, 1);
+}
+
+@media (max-width: 430px) {
+    .options {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .options > div {
+        width: 100%;
+    }
+
+    .setting select {
+        width: 8rem;
+    }
+
+    .summarise {
+        display: none;
+    }
 }

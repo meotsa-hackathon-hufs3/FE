@@ -9,6 +9,8 @@ import next from '../assets/next.png'
 import step1 from '../assets/step1.png'
 import step2 from '../assets/step2.png'
 import step3 from '../assets/step3.png'
+import logo_mobile from '../assets/logo_mobile.png'
+import dog from '../assets/dog.png'
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -32,7 +34,20 @@ export default function MainPage() {
         <img src={next} alt="" />
       </div>
 
-      <img src={main} alt="" />
+      <img className="mainImage" src={main} alt="" />
+      <div className="mobileMain">
+        <img className="mobileLogo" src={logo_mobile} alt="" />
+        <div className="mobileIntro">
+          AI가 사진 한 장 속 반려동물의 모습을<br />그대로 담아 3D로 되살려,<br />
+            오래도록 곁에 두고 볼 수 있는<br />나만의 굿즈로 만들어드려요.
+        </div>
+        <img className="dogImage" src={dog} alt="" />
+        <div onClick={handleStart} className="buttonDefault startButton">
+          굿즈 만들기
+          <img src={next} alt="" />
+        </div>
+      </div>
+      
       <div className="content">
         <div>
           <div>
@@ -72,6 +87,9 @@ export default function MainPage() {
           </div>
           <div className="cards">
             <div className="card">
+              <div className="step mobileStep">
+                  STEP 1
+                </div>
               <div>
                 <div>실물 사진 업로드</div>
                 <div>
@@ -81,19 +99,25 @@ export default function MainPage() {
               <img src={step1} alt="" />
             </div>
             <div className="card">
+              <div className="step mobileStep">
+                STEP 2
+              </div>
               <div>
-                <div>실물 사진 업로드</div>
+                <div>AI 3D 이미지 변환</div>
                 <div>
-                  반려동물의 모습이 잘 보이는 사진 한 장을 올려주세요
+                  사진 속 특징을 분석해 입체적인 형태로 그려냅니다
                 </div>
               </div>
               <img src={step2} alt="" />
             </div>
             <div className="card">
+              <div className="step mobileStep">
+                STEP 3
+              </div>
               <div>
-                <div>실물 사진 업로드</div>
+                <div>3D 모델 완성</div>
                 <div>
-                  반려동물의 모습이 잘 보이는 사진 한 장을 올려주세요
+                  완성된 모델을 확인하고, 원하는 굿즈로 제작을 진행해요
                 </div>
               </div>
               <img src={step3} alt="" />
