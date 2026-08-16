@@ -70,3 +70,9 @@
 .isInactive {
     background-color: #9E9E9E;
 }
+
+@media (max-width: 430px) {
+    .container {
+        height: auto;
+    }
+} 
