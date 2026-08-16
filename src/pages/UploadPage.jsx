@@ -12,7 +12,7 @@ const ACCEPTED_TYPES = ['image/jpeg', 'image/png'];
 
 export default function UploadPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
-    const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
+    const { setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
     const { setKey } = useContext(KeyContext);
     const { creationId } = useParams();
     const navigate = useNavigate();
@@ -90,6 +90,7 @@ export default function UploadPage() {
                 purpose: 'ORIGINAL_IMAGE',
                 contentType: type,
             });
+            
             const uploadUrl = response.data.uploadUrl;
             setKey(response.data.key);
 

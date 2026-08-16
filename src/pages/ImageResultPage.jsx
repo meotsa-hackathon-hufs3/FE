@@ -1,6 +1,6 @@
 import './ImageResultPage.css';
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { PageContext } from '../layouts/PageLayout';
 import { KeyContext } from '../App';
 import NextButton from '../components/NextButton/NextButton';
@@ -10,6 +10,7 @@ import closeIcon from '../assets/close.png';
 export default function ImageResultPage() {
   const { setDisplayBackButton, setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
   const { stylizedImageUrl } = useContext(KeyContext);
+  const { creationId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const regenerated = location.state?.regenerated;
@@ -18,11 +19,11 @@ export default function ImageResultPage() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   function handleRegenerate() {
-    navigate('/image', { state: { prompt, regenerated: true } });
+    navigate(`/image/${creationId}`, { state: { prompt, regenerated: true } });
   }
 
   function handleProceed() {
-    navigate('/option');
+    navigate(`/option/${creationId}`);
   }
 
   useEffect(() => {
@@ -33,9 +34,9 @@ export default function ImageResultPage() {
   }, []);
 
   return (
-    <div className="imageResultPage">
-      <div className="imageResultHeader">
-        <p>{regenerated ? '3D 이미지 재생성 완료' : '3D 이미지 생성 완료'}</p>
+    <div className="container imageResultPage">
+      <div>
+        <h1>{regenerated ? '3D 이미지 재생성 완료' : '3D 이미지 생성 완료'}</h1>
         <p>마음에 들지 않는 부분은 프롬프트를 수정해 다시 생성할 수 있어요.</p>
       </div>
 
@@ -46,7 +47,7 @@ export default function ImageResultPage() {
         </div>
       </div>
 
-      <div className="resultPrompt">
+      <div className="uploadPrompt resultPrompt">
         <label htmlFor="resultPrompt">프롬프트 수정</label>
         <textarea
           id="resultPrompt"

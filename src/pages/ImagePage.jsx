@@ -6,14 +6,14 @@ import { PageContext } from "../layouts/PageLayout";
 import { KeyContext } from "../App";
 
 export default function ImagePage() {
-  // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
-  const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
-  const { key, setStylizedImageUrl } = useContext(KeyContext);
-  const { creationId } = useParams();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const regenerated = location.state?.regenerated;
-  const prompt = location.state?.prompt;
+    // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
+    const { setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
+    const { key, setStylizedImageUrl } = useContext(KeyContext);
+    const { creationId } = useParams();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const regenerated = location.state?.regenerated;
+    const prompt = location.state?.prompt;
 
     const [status, setStatus] = useState('loading');
     useEffect(() => {
@@ -25,11 +25,12 @@ export default function ImagePage() {
                     originalImageKey: key,
                     prompt: prompt || undefined,
                 });
+
                 if (cancelled) return;
                 setStylizedImageUrl(response.data.stylizedImageUrl);
                 setStatus('complete');
             } catch (error) {
-                console.log(error);
+                console.log(error.response.data);
                 if (!cancelled) setStatus('error');
             }
         }
@@ -38,12 +39,12 @@ export default function ImagePage() {
         return () => {
             cancelled = true;
         };
-    }, []);
+    }, [creationId]);
 
     useEffect(() => {
         setNextButtonText('결과 확인');
         setNextButtonActive(status === 'complete');
-        setNextButtonOnclick(() => () => navigate('/image/result', { state: { regenerated } }));
+        setNextButtonOnclick(() => () => navigate(`/image/${creationId}/result`, { state: { regenerated } }));
     }, [status]);
 
     function handleErrorConfirm() {
@@ -51,11 +52,13 @@ export default function ImagePage() {
     }
 
     return (
-        <Loading
-            type={'image'}
-            isComplete={status === 'complete'}
-            error={status === 'error'}
-            onConfirm={handleErrorConfirm}
-        />
+        <div className='loadingOnScreen'>
+            <Loading
+                type={'image'}
+                isComplete={status === 'complete'}
+                error={status === 'error'}
+                onConfirm={handleErrorConfirm}
+            />
+        </div>
     );
 }

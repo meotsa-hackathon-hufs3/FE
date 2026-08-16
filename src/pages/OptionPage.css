@@ -1,25 +1,3 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 1.5rem;
-}
-
-.container > div:first-child {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.container h1 {
-    font-size: 1.7rem;
-}
-
-.container > div:first-child > p {
-    color: #BDBDBD;
-    font-size: 0.9rem;
-}
-
 .optionPage > div:last-child {
     display: flex;
     flex-direction: column;
