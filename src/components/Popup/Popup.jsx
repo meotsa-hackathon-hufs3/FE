@@ -10,7 +10,7 @@ export default function Popup({visibility, mainText, subText, type, setError}) {
             <img src={type == 'warning' ? warning : smile} alt="icon" />
             <div>
                 <p>{mainText}</p>
-                <p>{subText}</p>
+                <p style={{display: (subText ? 'block' : 'none')}}>{subText}</p>
             </div>
             <button onClick={() => setError(false)} className='buttonDefault'>확인</button>
         </div>

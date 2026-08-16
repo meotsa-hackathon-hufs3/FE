@@ -73,6 +73,13 @@
     border: solid 1.5px #6663CE;
     border-radius: 1000px;
     padding: 0.5rem 1.2rem;
+    background: #6663CE1A;
+}
+
+.fail {
+    color: #EE5700;
+    border: solid 1.5px #EE5700;
+    background: #EE57001A;
 }
 
 .priceInfo > div {
