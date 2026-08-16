@@ -24,6 +24,12 @@
     font-weight: 500;
 }
 
+.loadingIcon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
 .loadingButton {
     padding: 0.8rem 2rem;
     border-radius: 1000px;

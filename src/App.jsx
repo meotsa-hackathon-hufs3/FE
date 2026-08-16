@@ -14,10 +14,10 @@ export const KeyContext = createContext();
 
 function App() {
     const [key, setKey] = useState(null);
-    const [jobId, setJobId] = useState(null);
+    const [stylizedImageUrl, setStylizedImageUrl] = useState(null);
 
     return (
-        <KeyContext value={{ key, setKey, jobId, setJobId }}>
+        <KeyContext value={{ key, setKey, stylizedImageUrl, setStylizedImageUrl }}>
             <Routes>
                 <Route path='/' element={<MainPage />} />
                 <Route element={<PageLayout />}>
