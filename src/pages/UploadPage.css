@@ -1,29 +1,11 @@
 .uploadBoxContainer {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
     gap: 0.5rem;
     margin-bottom: 1rem;
-=======
-    gap: 1.2rem;
-    margin-top: -1rem;
-}
-
-.uploadHeader p:first-child {
-    font-size: 1.4rem;
-    font-weight: 700;
-}
-
-.uploadHeader p:last-child {
-    font-size: 0.9rem;
-    color: #9e9e9e;
-    font-weight: 500;
-    margin-top: 0.4rem;
->>>>>>> origin/feature/image
 }
 
 .uploadBox {
-    margin-top: 0.5rem;
     background-color: #fbfaff;
     border-radius: 22px;
     display: flex;
@@ -33,12 +15,8 @@
     gap: 0.6rem;
     padding: 3rem 1.5rem;
     cursor: pointer;
-<<<<<<< HEAD
     min-height: 220px;
     height: 18rem;
-=======
-    height: 350px;
->>>>>>> origin/feature/image
 }
 
 .uploadBox.dragOver {
@@ -62,7 +40,7 @@
 }
 
 .uploadBox .fileName {
-    color: #6663ce;
+    color: rgba(158, 158, 158, 1);
     font-weight: 500;
     font-size: 0.9rem;
     text-decoration: underline;
@@ -104,18 +82,12 @@
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    margin-top: 2.8rem;
 }
 
 .uploadPrompt label {
     align-self: flex-start;
-<<<<<<< HEAD
     color: #6663CE;
     font-size: 0.9rem;
-=======
-    font-weight: 600;
-    color: #6663ce;
->>>>>>> origin/feature/image
 }
 
 .uploadPrompt textarea {
@@ -123,12 +95,7 @@
     border-radius: 10px;
     background: #F8F8F8;
     padding: 1rem;
-<<<<<<< HEAD
     height: 8rem;
-=======
-    height: 135px;
-    resize: vertical;
->>>>>>> origin/feature/image
     font-weight: 500;
     color: #222222;
     resize: none;
