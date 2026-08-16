@@ -93,6 +93,10 @@
 }
 
 @media (max-width: 430px) {
+    .modelPage {
+        height: auto;
+    }
+
     .model {
         width: 100%;
         height: 20rem;
