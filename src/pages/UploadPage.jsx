@@ -29,7 +29,7 @@ export default function UploadPage() {
     }, []);
 
     useEffect(() => {
-        setNextButtonActive(prompt && uploadStatus === 'success');
+        setNextButtonActive(uploadStatus === 'success');
         setNextButtonOnclick(() => () => navigate(`/image/${creationId}`, { state: { prompt } }));
     }, [uploadStatus, prompt]);
 

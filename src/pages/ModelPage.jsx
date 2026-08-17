@@ -46,7 +46,7 @@ export default function ModelPage() {
         setModel(response.data);
         setNextButtonActive(true);
         setNextButtonOnclick(() => (handleResult));
-      } else if (response.data.status == "ERROR") {
+      } else if (response.data.status == "FAILED") {
         setError(true);
       }
     } catch (error) {
@@ -60,9 +60,8 @@ export default function ModelPage() {
     setNextButtonWhite(false);
 
     if (!isLoading) {
-      setNextButtonText('다른 사진으로 재생성');
-      setNextButtonWhite(true);
-      setNextButtonOnclick(() => handleNewCreation);
+      setNextButtonText('견적 비교하기');
+      setNextButtonOnclick(() => handlePricing);
     } else {
       setNextButtonText('결과 확인');
     }
@@ -174,12 +173,12 @@ export default function ModelPage() {
                 </div>
                 <div className="info priceInfo">
                   <div>예상 금액</div>
-                  <div>{model ? model.expectedFee.toLocaleString() + '원' : '-'}</div>
+                  <div>약 {model ? model.expectedFee.toLocaleString() + '원' : '-'}</div>
                 </div>
             </div>
           </div>
           <div>
-            <NextButton onClick={handlePricing} text={'견적 비교하기'} isActive={true} />
+            <NextButton white={true} onClick={handleNewCreation} text={'다른 사진으로 재생성'} isActive={true} />
           </div>
         </div>
       </div>
