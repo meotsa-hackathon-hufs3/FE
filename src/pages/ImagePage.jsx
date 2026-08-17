@@ -30,7 +30,7 @@ export default function ImagePage() {
                 setStylizedImageUrl(response.data.stylizedImageUrl);
                 setStatus('complete');
             } catch (error) {
-                console.log(error.response.data);
+                console.log(error.response?.data ?? error.message);
                 if (!cancelled) setStatus('error');
             }
         }
