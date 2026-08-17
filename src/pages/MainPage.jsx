@@ -3,13 +3,15 @@ import { useState } from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import './MainPage.css'
-import main from '../assets/main.png'
 import logo from '../assets/logo.png'
 import next from '../assets/next.png'
 import step1 from '../assets/step1.png'
 import step2 from '../assets/step2.png'
 import step3 from '../assets/step3.png'
-import main_mobile from '../assets/main_mobile.png'
+import logo_main from '../assets/logo_main.png'
+import background_dog from '../assets/background_dog.png'
+import background_land from '../assets/background_land.png'
+import background_mobile from '../assets/background_mobile.png'
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -28,27 +30,31 @@ export default function MainPage() {
 
   return (
     <div className="main">
-      <div onClick={handleStart} className="buttonDefault startButton">
-        굿즈 만들기
-        <img src={next} alt="" />
-      </div>
+      <div className="mainScreen">
+        <div>
+          <img src={logo_main} alt="메인 로고" />
+          <div className="topIntro">
+            <div>
+              <div>
+                “반려동물의 모습을 나만의 굿즈로”
+              </div>
+              <div>
+                AI가 사진 한 장 속 반려동물의 모습을 그대로 담아 3D로 되살려,<br />
+                오래도록 곁에 두고 볼 수 있는 나만의 굿즈로 만들어드려요.
+              </div>
+            </div>
+            <div>
+              <div onClick={handleStart} className="buttonDefault startButton">
+                굿즈 만들기
+                <img src={next} alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <img className="mainImage" src={main} alt="" />
-      <div className="mobileMain">
-        <img src={main_mobile} alt="" />
-        <div className="mobileIntro">
-          <div>
-            “반려동물의 모습을 나만의 굿즈로”
-          </div>
-          <div>
-            AI가 사진 한 장 속 반려동물의 모습을 그대로 담아 3D로 되살려,<br />
-            오래도록 곁에 두고 볼 수 있는 나만의 굿즈로 만들어드려요.
-          </div>
-        </div>
-        <div onClick={handleStart} className="buttonDefault startButton">
-          굿즈 만들기
-          <img src={next} alt="" />
-        </div>
+        <img className="bg" src={background_land} alt="산 배경" />
+        <img className="bg" src={background_dog} alt="강아지 배경" />
+        <img className="bg mobileBg" src={background_mobile} alt="" />
       </div>
       
       <div className="content">
