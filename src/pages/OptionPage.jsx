@@ -25,14 +25,15 @@ export default function OptionPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        setBackPage(`/image/${creationId}/result`);
+        setDisplayBackButton(true);
+        setNextButtonActive(false);
+        setNextButtonText('AI 모델 생성 요청하기');
+
         if (isValid) {
             setNextButtonActive(true);
             setNextButtonOnclick(() => handleModelCreation);
         }
-        
-        setBackPage(`/image/${creationId}/result`);
-        setDisplayBackButton(true);
-        setNextButtonText('AI 모델 생성 요청하기');
     }, [isValid])
 
     function handleSelectedOption(option) {

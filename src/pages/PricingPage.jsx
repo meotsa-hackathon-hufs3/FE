@@ -51,7 +51,7 @@ export default function PricingPage() {
             <div className="container pricingPage">
                 <div>
                     <h1>출력 업체별 견적을 비교하세요</h1>
-                    <p>동일한 모델 · 옵션 기준, 업체별 가격· 소재· 납기를 비교할 수 있어요</p>
+                    <p>현재 모델과 선택한 옵션을 기준으로 업체별 견적을 확인할 수 있어요</p>
                 </div>
                 <table>
                     <thead>
