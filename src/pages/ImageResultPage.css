@@ -91,6 +91,10 @@
     cursor: pointer;
 }
 
+.resultPrompt {
+    height: 7.5rem;
+}
+
 @media (min-height: 1000px) {
     .resultPrompt {
         height: 9rem;

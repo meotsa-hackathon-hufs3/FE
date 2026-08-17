@@ -1,7 +1,7 @@
 .optionPage > div:last-child {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.5rem;
 }
 
 .options {
@@ -11,7 +11,7 @@
 
 .options > div {
     position: relative;
-    height: 13rem;
+    height: 12rem;
     width: 25rem;
 }
 
@@ -70,14 +70,14 @@
 }
 
 .setting span {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: grey;
     font-weight: 500;
 }
 
 .setting select {
     width: 25rem;
-    padding: 1rem;
+    padding: 0.9rem;
     border-radius: 8px;
     border: 1px solid rgba(158, 158, 158, 1);
     color: rgba(158, 158, 158, 1);
@@ -99,7 +99,7 @@
     border-radius: 8px;
     border: 1px solid rgba(158, 158, 158, 1);
     background-color: white;
-    padding: 1rem;
+    padding: 0.9rem;
     color: rgba(158, 158, 158, 1);
     width: 7rem;
 }
