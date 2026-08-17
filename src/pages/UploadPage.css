@@ -15,7 +15,6 @@
     gap: 0.6rem;
     padding: 3rem 1.5rem;
     cursor: pointer;
-    min-height: 220px;
     height: 18rem;
 }
 
@@ -108,4 +107,15 @@
 .uploadPrompt textarea:focus {
     outline: none;
     border-color: #6663ce;
+}
+
+@media (min-height: 1000px) {
+    .uploadBox, .imageResultBox {
+        height: 23rem;
+    }
+
+    .uploadPrompt textarea {
+        height: 11rem;
+        font-size: 16px;
+    }
 }

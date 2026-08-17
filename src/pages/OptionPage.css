@@ -166,3 +166,38 @@
         display: none;
     }
 }
+
+@media (min-height: 1000px) {
+
+    .optionPage > div:last-child {
+        gap: 3rem;
+    }
+
+    .options > div {
+        height: 16rem;
+    }
+
+    .setting {
+        padding: 0.3rem 0;
+    }
+
+    .setting select {
+        width: 20rem;
+    }
+
+    .summarise {
+        padding: 2rem;
+    }
+
+    .summarise > div:first-child {
+        padding-bottom: 1.5rem;
+    }
+
+    .summarise > div:last-child {
+        padding-bottom: 0;
+    }
+
+    .summarise .summary {
+        padding: 1rem 0;
+    }
+}

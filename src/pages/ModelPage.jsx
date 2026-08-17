@@ -24,7 +24,7 @@ function Model({url}) {
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setDisplayBackButton, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
-  const { jobId } = useContext(KeyContext);
+  // const { jobId } = useContext(KeyContext);
   const { creationId } = useParams();
  
   const [model, setModel] = useState('');
@@ -39,6 +39,7 @@ export default function ModelPage() {
   async function handleModel() {
     try {
       // 테스트용이니까 나중에 지우고 jobId 살려놓기!!
+      const jobId = 1;
       const response = await axiosInstance.get(
         `/creations/${creationId}/models/${jobId}`
       )
@@ -97,7 +98,7 @@ export default function ModelPage() {
   if (!model || isLoading) {
     return (
       <div className="loadingOnScreen">
-        <title>PETFORM: 모델 오류</title>
+        <title>PETFORM: 모델 생성</title>
         <Loading type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} onConfirm={error ? handleError : null} />
       </div>
     )

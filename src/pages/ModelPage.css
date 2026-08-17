@@ -107,3 +107,34 @@
         gap: 1rem;
     }
 }
+
+@media (min-height: 1000px) {
+    .modelPage > div:last-child {
+        height: 100%;
+    }
+
+    .model {
+        width: 65%;
+    }
+
+    .modelInfo > div:first-child {
+        font-size: 1.1rem;
+    }
+
+    .modelInfo .info {
+        padding: 1rem 0;
+    }
+
+    .modelInfoContainer > .modelInfo:nth-child(2) .info {
+        padding: 1.5rem 0;
+    }
+
+    .info > div {
+        font-size: 1rem;
+    }
+
+    .info .pass {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.9rem;
+    }
+}

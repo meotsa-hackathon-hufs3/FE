@@ -94,3 +94,9 @@
     justify-content: center;
     cursor: pointer;
 }
+
+@media (min-height: 1000px) {
+    .resultPrompt {
+        height: 9rem;
+    }
+}

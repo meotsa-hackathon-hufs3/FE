@@ -48,7 +48,7 @@ export default function ImagePage() {
     }, [status]);
 
     function handleErrorConfirm() {
-        navigate('/upload');
+        navigate(`/upload/${creationId}`);
     }
 
     return (

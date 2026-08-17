@@ -48,3 +48,9 @@
         padding: 1rem 1.8rem;
     }
 }
+
+@media (min-height: 1000px) {
+    .pageContent {
+        padding: 2.5rem 6rem;
+    }
+}
