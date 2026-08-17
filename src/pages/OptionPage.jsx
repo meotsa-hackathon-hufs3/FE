@@ -132,7 +132,6 @@ export default function OptionPage() {
                                 </div>
                                 <select onChange={handleSize}>
                                     <option value="5">5cm</option>
-                                    <option value="8">8cm</option>
                                 </select>
                             </div>
                             <div className="setting">
