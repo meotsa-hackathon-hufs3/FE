@@ -53,10 +53,6 @@ export default function OptionPage() {
     }
     
     function handleMaterial(m) {
-        if (m == 'RESIN') {
-            setError(true);
-            return;
-        }
         setMaterial(m);
     }
 
