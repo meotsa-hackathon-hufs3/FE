@@ -31,6 +31,10 @@
 }
 
 @media (max-width: 430px) {
+    .pageLayout .pageLayoutBar {
+        padding: 1.4rem 1.8rem;
+    }
+
     .pageLayout > div {
         padding: 1.8rem;
     }
