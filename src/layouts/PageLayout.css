@@ -13,6 +13,10 @@
     border-bottom: 2px solid #BDBDBD80
 }
 
+.pageLayoutBar img {
+    height: 2rem;
+}
+
 .pageContent {
     padding: 1.5rem 6rem;
     height: 100%;

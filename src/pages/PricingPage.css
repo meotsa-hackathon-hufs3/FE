@@ -92,9 +92,9 @@
     }
 
     .pricingCard {
-        border-radius: 12px;
+        border-radius: 20px;
         border: 1.5px solid rgba(102, 99, 206, 1);
-        padding: 1rem;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
@@ -106,11 +106,13 @@
 
     .pricingCard div:first-child {
         font-size: 1.3rem;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
     }
 
     .pricingCard div:first-child span {
         font-size: 1rem;
-        padding-left: 0.5rem;
     }
     
     .pricingCard span {

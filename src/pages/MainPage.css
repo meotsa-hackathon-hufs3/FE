@@ -83,12 +83,13 @@
         #FBFAFF 139.4vh,
         rgba(177, 164, 242, 0.3) 170vh
     );
-    height: 170vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 6rem;
+    padding: 15rem;
 }
 
 .content > div {
@@ -202,6 +203,10 @@
     font-weight: 500;
 }
 
+.footer img {
+    height: 2rem;
+}
+
 .footer .intro {
     display: flex;
     flex-direction: column;
@@ -283,8 +288,7 @@
     }
 
     .content {
-        padding: 10rem 2rem;
-        height: auto;
+        padding: 12rem 2rem;
         background: linear-gradient(
             180deg,
             rgb(19, 38, 91) 0dvh,
