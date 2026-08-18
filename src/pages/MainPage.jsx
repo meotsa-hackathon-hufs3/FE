@@ -60,23 +60,26 @@ export default function MainPage() {
       <div className="content">
         <div>
           <div>
-            "소중한 반려동물의 모습을 오래 곁에 두고 싶다" 생각해본 적 있나요?
+            <div>
+              "소중한 반려동물의 모습을 오래 곁에 두고 싶다" 생각해본 적 있나요?
+            </div>
+            <div>
+              복잡한 3D 제작, AI로 PETFORM이 해결해드릴게요.
+            </div>
           </div>
           <div>
-            복잡한 3D 제작, AI로 PETFORM이 해결해드릴게요.
+            <div>
+              특별하게 남기고 싶은데, 방법을 몰라 미뤄두기만 했어요.😥
+            </div>
+            <div>
+              막상 만들려고 하니 어디서 해야 할지 모르겠어요.
+            </div>
+            <div>
+              3D 모델링을 배울 시간도, 자신도 없어요.
+            </div>
           </div>
         </div>
-        <div>
-          <div>
-            특별하게 남기고 싶은데, 방법을 몰라 미뤄두기만 했어요.😥
-          </div>
-          <div>
-            막상 만들려고 하니 어디서 해야 할지 모르겠어요.
-          </div>
-          <div>
-            3D 모델링을 배울 시간도, 자신도 없어요.
-          </div>
-        </div>
+
         <div>
           <div>나만의 3D 굿즈, 이렇게 만들어져요</div>
           <div className="steps">
