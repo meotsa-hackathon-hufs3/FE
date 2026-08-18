@@ -12,7 +12,7 @@ import axiosInstance from "../api/axiosInstance"
 export default function OptionPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
     const { setJobId } = useContext(KeyContext);
-    const { setDisplayBackButton, setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
+    const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
 
     const { creationId } = useParams();
     const [selectedOption, setSelectedOption] = useState(null);
@@ -26,7 +26,6 @@ export default function OptionPage() {
 
     useEffect(() => {
         setBackPage(`/image/${creationId}/result`);
-        setDisplayBackButton(true);
         setNextButtonActive(false);
         setNextButtonText('AI 모델 생성 요청하기');
 

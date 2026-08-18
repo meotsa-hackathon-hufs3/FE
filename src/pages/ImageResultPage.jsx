@@ -8,7 +8,7 @@ import expandIcon from '../assets/expand.png';
 import closeIcon from '../assets/close.png';
 
 export default function ImageResultPage() {
-  const { setDisplayBackButton, setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
+  const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick } = useContext(PageContext);
   const { stylizedImageUrl } = useContext(KeyContext);
   const { creationId } = useParams();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function ImageResultPage() {
   }
 
   useEffect(() => {
-    setDisplayBackButton('none');
+    setBackPage(`/upload/${creationId}`);
     setNextButtonText('굿즈 생성하기');
     setNextButtonActive(true);
     setNextButtonOnclick(() => handleProceed);

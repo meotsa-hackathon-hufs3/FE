@@ -12,7 +12,7 @@ const ACCEPTED_TYPES = ['image/jpeg', 'image/png'];
 
 export default function UploadPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
-    const { setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
+    const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
     const { setKey } = useContext(KeyContext);
     const { creationId } = useParams();
     const navigate = useNavigate();
@@ -26,6 +26,7 @@ export default function UploadPage() {
     useEffect(() => {
         setNextButtonText('이미지 생성하기');
         setNextButtonWhite(false);
+        setBackPage('/');
     }, []);
 
     useEffect(() => {

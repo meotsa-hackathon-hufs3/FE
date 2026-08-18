@@ -8,7 +8,7 @@ import { div } from "three/tsl";
 
 export default function PricingPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
-    const { setDisplayBackButton, setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
+    const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
     const { creationId } = useParams();
     const [ selected, setSelected ] = useState('');
     const [ end, setEnd ] = useState(false);
@@ -32,7 +32,6 @@ export default function PricingPage() {
     useEffect(() => {
         handlePricing();
 
-        setDisplayBackButton(true);
         setNextButtonWhite(false);
         setNextButtonActive(false);
         setNextButtonText('선택한 업체로 주문하기');

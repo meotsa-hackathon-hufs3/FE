@@ -23,8 +23,9 @@ function Model({url}) {
 
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
-  const { setDisplayBackButton, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
-  const { jobId } = useContext(KeyContext);
+  const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
+  // const { jobId } = useContext(KeyContext);
+  const jobId = 1;
   const { creationId } = useParams();
  
   const [model, setModel] = useState('');
@@ -56,7 +57,7 @@ export default function ModelPage() {
   }
 
   useEffect(() => {
-    setDisplayBackButton('none');
+    setBackPage(`/option/${creationId}`)
     setNextButtonWhite(false);
 
     if (!isLoading) {
