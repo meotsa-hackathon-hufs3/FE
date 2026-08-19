@@ -5,7 +5,7 @@
 ## 서비스 흐름
 
 ```
-사진 업로드 → AI 이미지 생성 → 옵션 선택 → 3D 모델 생성 → 가격/주문
+사진 업로드 → AI 이미지 생성 → 굿즈 옵션 선택 → 3D 모델 생성 → 견적 확인 후 주문
 ```
 
 ## 주요 기능
@@ -20,6 +20,7 @@
 - React 19 + Vite
 - react-router
 - axios
+- Three.js / @react-three/fiber
 - CSS (컴포넌트/페이지별 개별 파일)
 
 ## 시작하기 (팀원 공용)
@@ -27,16 +28,15 @@
 ```bash
 git clone https://github.com/meotsa-hackathon-hufs3/FE.git
 cd FE
+npm install
 ```
 
-프로젝트 실행 전 루트 디렉토리에 `.env` 파일을 생성하고 아래 값을 설정해주세요.
+프로젝트 실행 전 루트 디렉토리에 `.env` 파일을 생성하고 아래 값을 설정해주세요. (.env.example 참고)
 ```bash
 VITE_API_URL=https://your-api-domain.com
 ```
 
-
 ```
-npm install
 npm run dev
 ```
 
