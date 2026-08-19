@@ -17,11 +17,11 @@
 
 ## 기술 스택 (공용)
 
-- React 19 + Vite
-- react-router
-- axios
-- Three.js / @react-three/fiber
-- CSS (컴포넌트/페이지별 개별 파일)
+- **React 19 + Vite**: 컴포넌트, 상태 관리 및 빠른 서버 구동으로 효율적인 개발
+- **react-router**: 페이지 간 라우팅 처리
+- **Axios**: API 데이터 요청 처리
+- **Three.js / @react-three/fiber**: 3D 그래픽 인터랙션 구현
+- **CSS (컴포넌트/페이지별 개별 파일)**: 반응형 페이지 지원
 
 ## 시작하기 (팀원 공용)
 
