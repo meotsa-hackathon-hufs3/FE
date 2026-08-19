@@ -35,7 +35,7 @@ npm install
 ```bash
 VITE_API_URL=https://your-api-domain.com
 ```
-
+프로젝트를 실행합니다.
 ```
 npm run dev
 ```
@@ -57,9 +57,9 @@ npm run dev
 | `/upload/:creationId`       | UploadPage      | 반려동물 사진 업로드       |
 | `/image/:creationId`        | ImagePage       | 이미지 생성 중 (로딩)      |
 | `/image/:creationId/result` | ImageResultPage | 이미지 생성 완료 결과      |
-| `/option/:creationId`        | OptionPage      | 3D 모델 옵션 선택        |
-| `/model/:creationId`         | ModelPage       | 3D 모델 생성            |
-| `/pricing/:creationId`       | PricingPage     | 가격 및 주문             |
+| `/option/:creationId`       | OptionPage      | 굿즈 옵션 선택           |
+| `/model/:creationId`        | ModelPage       | 3D 모델 생성 및 결과 확인  |
+| `/pricing/:creationId`      | PricingPage     | 가격 및 주문             |
 
 ## 협업 규칙
 
