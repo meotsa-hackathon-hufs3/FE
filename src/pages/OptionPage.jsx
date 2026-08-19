@@ -90,7 +90,7 @@ export default function OptionPage() {
             <div className="container optionPage">
                 <div>
                     <h1>어떤 굿즈로 만들까요?</h1>
-                    <p>굿즈 종류와 옵션을 선택하면 예상 견적을 미리 확인할 수 있어요</p>
+                    <p>굿즈 종류와 옵션을 선택하면 모델과 예상 견적을 확인할 수 있어요</p>
                 </div>
                 <div>
                     <div className="options">

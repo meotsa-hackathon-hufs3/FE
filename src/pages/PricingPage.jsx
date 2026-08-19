@@ -78,7 +78,7 @@ export default function PricingPage() {
                                         <td>{pricing.expectedTime}</td>
                                         <td>{pricing.minQuantity}개</td>
                                         <td>{pricing.printingCost.toLocaleString()}원</td>
-                                        <td>{pricing.shippingCost.toLocaleString()}원</td>
+                                        <td>{pricing.shippingCost == 0 ? '무료' : pricing.shippingCost.toLocaleString() + '원'}</td>
                                         <td>{pricing.totalCost.toLocaleString()}원</td>
                                         <td><button onClick={() => setSelected(pricing.printShopId)} className={"buttonDefault " + (selected == pricing.printShopId ? '' : 'backButton')}>{ selected == pricing.printShopId ? '선택됨' : '선택'}</button></td>
                                     </tr>
