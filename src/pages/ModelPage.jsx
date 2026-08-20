@@ -2,13 +2,12 @@ import axiosInstance from "../api/axiosInstance";
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router";
 import NextButton from "../components/NextButton/NextButton";
-import BackButton from "../components/BackButton/BackButton";
 import { KeyContext } from "../App";
 import { PageContext } from "../layouts/PageLayout";
 import { STLLoader } from 'three/addons/loaders/STLLoader.js'
 import { Canvas, useLoader } from '@react-three/fiber'
 import { PCFShadowMap } from 'three';
-import { Bounds, Center, OrbitControls } from '@react-three/drei' 
+import { Bounds, Center, OrbitControls, PerspectiveCamera } from '@react-three/drei' 
 import './ModelPage.css'
 import Loading from "../components/Loading/Loading";
 
@@ -24,7 +23,8 @@ function Model({url}) {
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
-  const { jobId } = useContext(KeyContext);
+  // const { jobId } = useContext(KeyContext);
+  const jobId = 32;
   const { creationId } = useParams();
  
   const [model, setModel] = useState('');
@@ -111,7 +111,13 @@ export default function ModelPage() {
       </div>
       <div>
         <div className="model">
-          <Canvas shadows={{ type: PCFShadowMap }} gl={{ alpha: true }} camera={{ position: [0, -30, 0], fov: 40 }}>
+          <Canvas shadows={{ type: PCFShadowMap }} gl={{ alpha: true }} camera={{ position: [0, 0, 0], fov: 40 }}>
+            <PerspectiveCamera 
+              makeDefault 
+              position={[0, -30, 0]} 
+              fov={40} 
+              up={[0, 0, 1]} 
+            />
             <ambientLight intensity={0.6} />
             <directionalLight 
               position={[-5, -8, 5]} 
@@ -127,7 +133,7 @@ export default function ModelPage() {
               position={[0, -4, 8]} 
               intensity={0.4} 
             />
-            <Bounds fit clip observe margin={1.5}>
+            <Bounds fit observe clip margin={1.5}>
               <Center>
                 {
                   model &&
@@ -135,7 +141,7 @@ export default function ModelPage() {
                 }
               </Center>
             </Bounds>
-            <OrbitControls makeDefault enablePan={false} />
+            <OrbitControls makeDefault enablePan={false} target={[0, 0, 0]} />
           </Canvas>
         </div>
         <div className="modelInfoContainer">
