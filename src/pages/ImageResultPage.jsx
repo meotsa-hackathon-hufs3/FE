@@ -1,8 +1,8 @@
 import './ImageResultPage.css';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
-import { PageContext } from '../layouts/PageLayout';
-import { KeyContext } from '../App';
+import { PageContext } from '../context/PageContext';
+import { KeyContext } from '../context/KeyContext';
 import NextButton from '../components/NextButton/NextButton';
 import expandIcon from '../assets/expand.png';
 import closeIcon from '../assets/close.png';
@@ -22,16 +22,16 @@ export default function ImageResultPage() {
     navigate(`/image/${creationId}`, { state: { prompt, regenerated: true } });
   }
 
-  function handleProceed() {
+  const handleProceed = useCallback(() => {
     navigate(`/option/${creationId}`);
-  }
+  }, [navigate, creationId])
 
   useEffect(() => {
     setBackPage(`/upload/${creationId}`);
     setNextButtonText('굿즈 생성하기');
     setNextButtonActive(true);
     setNextButtonOnclick(() => handleProceed);
-  }, []);
+  }, [creationId, handleProceed, setBackPage, setNextButtonActive, setNextButtonOnclick, setNextButtonText]);
 
   return (
     <div className="container imageResultPage">

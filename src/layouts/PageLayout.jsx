@@ -3,10 +3,9 @@ import './PageLayout.css';
 import logo from '../assets/logo.png';
 import BackButton from '../components/BackButton/BackButton';
 import NextButton from '../components/NextButton/NextButton';
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
-
-export const PageContext = createContext();
+import { PageContext } from '../context/PageContext';
 
 export default function PageLayout() {
     // 전부 사용 시 useEffect 내에서 사용할 것

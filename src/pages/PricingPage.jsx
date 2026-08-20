@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { PageContext } from "../layouts/PageLayout";
+import { PageContext } from "../context/PageContext";
 import './PricingPage.css'
 import Popup from "../components/Popup/Popup";
 import axiosInstance from "../api/axiosInstance";
-import { div } from "three/tsl";
 
 export default function PricingPage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
@@ -18,7 +17,7 @@ export default function PricingPage() {
         setEnd(true);
     }
 
-    async function handlePricing() {
+    const handlePricing = useCallback(async () => {
         try {
             const response = await axiosInstance.get(
                 `/creations/${creationId}/estimates`
@@ -27,21 +26,25 @@ export default function PricingPage() {
         } catch (error) {
             console.log(error);
         }
-    }
-    
+    }, [creationId, setPricings]) 
+
     useEffect(() => {
         handlePricing();
-
+    }, [handlePricing])
+    
+    useEffect(() => {
         setNextButtonWhite(false);
         setNextButtonActive(false);
         setNextButtonText('선택한 업체로 주문하기');
         setBackPage(`/model/${creationId}`);
+    }, [creationId, setBackPage, setNextButtonActive,  setNextButtonText, setNextButtonWhite])
 
+    useEffect(() => {
         if (selected) {
             setNextButtonOnclick(() => handleEnd);
             setNextButtonActive(true);
         }
-    }, [selected])
+    }, [selected, setNextButtonOnclick, setNextButtonActive])
 
     return (
         <>

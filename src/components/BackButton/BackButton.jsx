@@ -1,6 +1,5 @@
 import './BackButton.css';
 import { useNavigate } from 'react-router';
-import axiosInstance from '../../api/axiosInstance';
 
 export default function BackButton({url}) {
   // 클릭 시 이동할 링크를 url이라는 이름으로 넘기면 됨

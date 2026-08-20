@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import axiosInstance from "../api/axiosInstance";
 import Loading from "../components/Loading/Loading";
-import { PageContext } from "../layouts/PageLayout";
-import { KeyContext } from "../App";
+import { PageContext } from '../context/PageContext';
+import { KeyContext } from '../context/KeyContext';
 
 export default function ImagePage() {
     // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
@@ -39,13 +39,13 @@ export default function ImagePage() {
         return () => {
             cancelled = true;
         };
-    }, [creationId]);
+    }, [creationId, prompt, setStylizedImageUrl, key]);
 
     useEffect(() => {
         setNextButtonText('결과 확인');
         setNextButtonActive(status === 'complete');
         setNextButtonOnclick(() => () => navigate(`/image/${creationId}/result`, { state: { regenerated } }));
-    }, [status]);
+    }, [status, creationId, navigate, regenerated, setNextButtonActive, setNextButtonOnclick, setNextButtonText]);
 
     function handleErrorConfirm() {
         navigate(`/upload/${creationId}`);

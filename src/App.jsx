@@ -1,17 +1,15 @@
 import './App.css'
-import { createContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Route, Routes } from 'react-router'
 import MainPage from './pages/MainPage'
 import ModelPage from './pages/ModelPage'
 import ImagePage from './pages/ImagePage'
 import ImageResultPage from './pages/ImageResultPage'
-import axiosInstance from './api/axiosInstance'
 import PageLayout from './layouts/PageLayout'
 import OptionPage from './pages/OptionPage'
 import PricingPage from './pages/PricingPage'
 import UploadPage from './pages/UploadPage'
-
-export const KeyContext = createContext();
+import { KeyContext } from './context/KeyContext'
 
 function App() {
     const [key, setKey] = useState(null);

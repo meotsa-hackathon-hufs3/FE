@@ -1,9 +1,9 @@
 import axiosInstance from "../api/axiosInstance";
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router";
 import NextButton from "../components/NextButton/NextButton";
-import { KeyContext } from "../App";
-import { PageContext } from "../layouts/PageLayout";
+import { KeyContext } from "../context/KeyContext"
+import { PageContext } from "../context/PageContext"
 import { STLLoader } from 'three/addons/loaders/STLLoader.js'
 import { Canvas, useLoader } from '@react-three/fiber'
 import { PCFShadowMap } from 'three';
@@ -31,11 +31,31 @@ export default function ModelPage() {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  function handleResult() {
-    setIsLoading(false);
+  async function handleNewCreation() {
+    try {
+      const response = await axiosInstance.post(
+        '/creations'
+      )
+    
+      navigate(`/upload/${response.data.creationId}`);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  async function handleModel() {
+  const handlePricing = useCallback(() => {
+    navigate(`/pricing/${creationId}`);
+  }, [creationId, navigate])
+
+  function handleError() {
+    navigate(`/image/${creationId}/result`)
+  }
+
+  const handleResult = useCallback(() => {
+    setIsLoading(false);
+  }, [setIsLoading])
+
+  const handleModel = useCallback(async () => {
     try {
       const response = await axiosInstance.get(
         `/creations/${creationId}/models/${jobId}`
@@ -52,7 +72,7 @@ export default function ModelPage() {
       console.log(error.response.data);
       setError(true);
     }
-  }
+  }, [creationId, jobId, setModel, setNextButtonActive, setNextButtonOnclick, handleResult, setError])
 
   useEffect(() => {
     setBackPage(`/option/${creationId}`)
@@ -70,27 +90,7 @@ export default function ModelPage() {
       const interval = setInterval(handleModel, 5000);
       return () => clearInterval(interval);
     }
-  }, [model, error, isLoading])
-
-  async function handleNewCreation() {
-    try {
-      const response = await axiosInstance.post(
-        '/creations'
-      )
-    
-      navigate(`/upload/${response.data.creationId}`);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  function handlePricing() {
-    navigate(`/pricing/${creationId}`);
-  }
-
-  function handleError() {
-    navigate(`/image/${creationId}/result`)
-  }
+  }, [creationId, handleModel, handlePricing, model, error, isLoading, setBackPage, setNextButtonActive, setNextButtonOnclick, setNextButtonText, setNextButtonWhite])
 
   if (!model || isLoading) {
     return (

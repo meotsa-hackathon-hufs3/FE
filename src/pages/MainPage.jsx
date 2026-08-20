@@ -1,5 +1,4 @@
 import axiosInstance from "../api/axiosInstance";
-import { useState } from 'react';
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import './MainPage.css'
