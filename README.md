@@ -73,6 +73,7 @@ src/
 ├── api/          # axios 인스턴스 등 API 통신
 ├── assets/       # 이미지, 아이콘 등 리소스
 ├── components/   # 공통 컴포넌트 (버튼, 로딩 등)
+├── context/      # 전역 상태 관리 위한 컨텍스트 정리
 ├── layouts/      # 페이지 레이아웃
 └── pages/        # 라우트별 페이지
 ```
