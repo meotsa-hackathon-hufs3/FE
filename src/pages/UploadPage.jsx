@@ -2,8 +2,8 @@ import './UploadPage.css';
 import axiosInstance from '../api/axiosInstance';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { PageContext } from '../layouts/PageLayout';
-import { KeyContext } from '../App';
+import { PageContext } from '../context/PageContext';
+import { KeyContext } from '../context/KeyContext';
 import fileIcon from '../assets/file.png';
 import checkIcon from '../assets/check.png';
 import errorIcon from '../assets/error.png';
@@ -27,12 +27,12 @@ export default function UploadPage() {
         setNextButtonText('이미지 생성하기');
         setNextButtonWhite(false);
         setBackPage('/');
-    }, []);
+    }, [setBackPage, setNextButtonText, setNextButtonWhite]);
 
     useEffect(() => {
         setNextButtonActive(uploadStatus === 'success');
         setNextButtonOnclick(() => () => navigate(`/image/${creationId}`, { state: { prompt } }));
-    }, [uploadStatus, prompt]);
+    }, [uploadStatus, prompt, creationId, navigate, setNextButtonActive, setNextButtonOnclick]);
 
     function openFilePicker() {
         fileInputRef.current?.click();

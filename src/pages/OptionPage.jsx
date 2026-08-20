@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
-import { KeyContext } from "../App"
-import { PageContext } from "../layouts/PageLayout"
+import { KeyContext } from "../context/KeyContext"
+import { PageContext } from "../context/PageContext"
 import './OptionPage.css'
 import option1 from '../assets/option1.png'
 import option2 from '../assets/option2.png'
@@ -24,6 +24,26 @@ export default function OptionPage() {
     const [error, setError] = useState(false);
     const navigate = useNavigate();
 
+    const handleModelCreation = useCallback(async () => {
+        try {
+            const response = await axiosInstance.post(
+                `/creations/${creationId}/models`,
+                {
+                    "productType": selectedOption,
+                    "size": size * 10,
+                    "amount": quantity,
+                    "material": material,
+                    "color": colour
+                }
+            )
+
+            setJobId(response.data.jobId);
+            navigate(`/model/${creationId}`);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [creationId, selectedOption, size, quantity, material, colour, setJobId, navigate])
+
     useEffect(() => {
         setBackPage(`/image/${creationId}/result`);
         setNextButtonActive(false);
@@ -33,7 +53,7 @@ export default function OptionPage() {
             setNextButtonActive(true);
             setNextButtonOnclick(() => handleModelCreation);
         }
-    }, [isValid])
+    }, [isValid, creationId, handleModelCreation, setBackPage, setNextButtonActive, setNextButtonOnclick, setNextButtonText])
 
     function handleSelectedOption(option) {
         if (option == 'KEYRING' || option == 'DIORAMA') {
@@ -61,26 +81,6 @@ export default function OptionPage() {
             return;
         }
         setColour(c);
-    }
-
-    async function handleModelCreation() {
-        try {
-            const response = await axiosInstance.post(
-                `/creations/${creationId}/models`,
-                {
-                    "productType": selectedOption,
-                    "size": size * 10,
-                    "amount": quantity,
-                    "material": material,
-                    "color": colour
-                }
-            )
-
-            setJobId(response.data.jobId);
-            navigate(`/model/${creationId}`);
-        } catch (error) {
-            console.log(error);
-        }
     }
     
     return (
