@@ -23,9 +23,11 @@ function Model({url}) {
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
-  const { jobId } = useContext(KeyContext);
+  const { jobId, setJobId } = useContext(KeyContext);
   const { creationId } = useParams();
  
+  const [queuePosition, setQueuePosition] = useState('');
+  const [estimatedSeconds, setEstimatedSeconds] = useState('');
   const [model, setModel] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -55,11 +57,19 @@ export default function ModelPage() {
     setIsLoading(false);
   }, [setIsLoading])
 
+  function handlePreview() {
+    setJobId(32);
+    navigate('/model/149')
+  }
+
   const handleModel = useCallback(async () => {
     try {
       const response = await axiosInstance.get(
         `/creations/${creationId}/models/${jobId}`
       )
+
+      setQueuePosition(response.data.queuePosition);
+      setEstimatedSeconds(response.data.estimatedSeconds);
 
       if (response.data.status == "COMPLETED") {
         setModel(response.data);
@@ -86,6 +96,7 @@ export default function ModelPage() {
     }
 
     if (!model && !error) {
+      handleModel();
       setNextButtonActive(false);
       const interval = setInterval(handleModel, 5000);
       return () => clearInterval(interval);
@@ -96,7 +107,8 @@ export default function ModelPage() {
     return (
       <div className="loadingOnScreen">
         <title>PETFORM: 모델 생성</title>
-        <Loading type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} onConfirm={error ? handleError : null} />
+        <Loading queue={queuePosition} seconds={estimatedSeconds} type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} onConfirm={error ? handleError : null} />
+        <div onClick={handlePreview} className="preview"></div>
       </div>
     )
   }

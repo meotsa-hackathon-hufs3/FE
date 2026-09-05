@@ -9,7 +9,7 @@ import paw4 from '../../assets/paw4.png'
 
 const pawFrames = [paw1, paw2, paw3, paw4];
 
-export default function Loading({type, isComplete, error, onConfirm}) {
+export default function Loading({queue, seconds, type, isComplete, error, onConfirm}) {
   // 이미지 로딩창은 'image', 모델 로딩창은 'model'을 type으로 보내면 됨
   // 결과 로딩 완료 시 isComplete를 true로 보내면 됨
   // 결과 생성 불가 시 error를 true로 보내면 됨
@@ -35,6 +35,7 @@ export default function Loading({type, isComplete, error, onConfirm}) {
         <div>
           <p>AI가 3D {type == 'image' ? '이미지를' : '모델을'} 생성하고 있어요</p>
           <p>평균 소요시간 · {type == 'image' ? '1' : '1-3'}분</p>
+          <p style={{display: seconds ? 'block' : 'none'}}>예상 대기 시간 {seconds}초, 대기 순위 {queue}번</p>
         </div>
       </>:
       (

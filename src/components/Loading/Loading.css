@@ -19,7 +19,7 @@
     gap: 0.5rem;
 }
 
-.loadingScreen > div:nth-child(2) > p:last-child {
+.loadingScreen > div:nth-child(2) > p:nth-child(2), .loadingScreen > div:nth-child(2) > p:last-child {
     color: #9E9E9E;
     font-weight: 500;
 }
