@@ -82,6 +82,18 @@ export default function UploadPage() {
     }
 
     async function handleUpload(selectedFile) {
+        const bitmap = await createImageBitmap(selectedFile, {imageOrientation: 'from-image'});
+        const scale = Math.min(1, 2048 / Math.max(bitmap.width, bitmap.height));
+        const canvas = new OffscreenCanvas(
+            Math.round(bitmap.width * scale),
+            Math.round(bitmap.height * scale)
+        )
+        canvas.width = Math.round(bitmap.width * scale);
+        canvas.height = Math.round(bitmap.height * scale);
+        canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+
+        const blob = await canvas.convertToBlob({type: 'image/jpge', quality: 0.9});
+
         const type = selectedFile.type;
 
         try {
@@ -95,7 +107,7 @@ export default function UploadPage() {
             const uploadUrl = response.data.uploadUrl;
             setKey(response.data.key);
 
-            await axiosInstance.put(uploadUrl, selectedFile, {
+            await axiosInstance.put(uploadUrl, blob, {
                 headers: {
                     'Content-Type': type,
                 },

@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .modelPage {
@@ -89,6 +90,15 @@
 .modelInfoContainer > div:last-child {
     display: flex;
     justify-content: flex-end;
+}
+
+.preview {
+    position: absolute;
+    top: -110px;
+    right: -80px;
+    background-color: white;
+    height: 5rem;
+    width: 10rem;
 }
 
 @media (max-width: 430px) {

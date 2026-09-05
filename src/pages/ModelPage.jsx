@@ -23,7 +23,7 @@ function Model({url}) {
 export default function ModelPage() {
   // 버튼 레이아웃 관련 부분 - 설명은 layouts/PageLayout.jsx 참고
   const { setBackPage, setNextButtonText, setNextButtonActive, setNextButtonOnclick, setNextButtonWhite } = useContext(PageContext);
-  const { jobId } = useContext(KeyContext);
+  const { jobId, setJobId } = useContext(KeyContext);
   const { creationId } = useParams();
  
   const [model, setModel] = useState('');
@@ -54,6 +54,11 @@ export default function ModelPage() {
   const handleResult = useCallback(() => {
     setIsLoading(false);
   }, [setIsLoading])
+
+  function handlePreview() {
+    setJobId(32);
+    navigate('/model/149')
+  }
 
   const handleModel = useCallback(async () => {
     try {
@@ -97,6 +102,7 @@ export default function ModelPage() {
       <div className="loadingOnScreen">
         <title>PETFORM: 모델 생성</title>
         <Loading type={'model'} isComplete={!error && model ? true : false} error={error ? true : false} onConfirm={error ? handleError : null} />
+        <div onClick={handlePreview} className="preview"></div>
       </div>
     )
   }
